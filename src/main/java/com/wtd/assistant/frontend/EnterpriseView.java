@@ -21,8 +21,8 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.List;
 import java.util.Optional;
 
-@Route("EnterpriseView")
-public class EnterpriseView extends AssistantAppLayout implements HasUrlParameter<String>, AfterNavigationObserver {
+@Route(value = "EnterpriseView", layout = AssistantAppLayout.class)
+public class EnterpriseView extends VerticalLayout implements HasUrlParameter<String>, AfterNavigationObserver {
 
     final private EnterpriseDao enterpriseDao;
 
@@ -42,11 +42,8 @@ public class EnterpriseView extends AssistantAppLayout implements HasUrlParamete
         this.grid = new Grid<>(Audit.class, false);
         this.accordion = new Accordion();
 
-
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(accordion);
         grid.setHeight("200px");
-        setContent(generalLayout);
+        add(accordion);
 
     }
 
@@ -80,7 +77,6 @@ public class EnterpriseView extends AssistantAppLayout implements HasUrlParamete
         VerticalLayout auditsInformationLayout = new VerticalLayout();
         auditsInformationLayout.add(grid);
 
-        //Accordion
         Binder<Enterprise> enterpriseBinder = new Binder<>(Enterprise.class);
         enterpriseBinder.setBean(enterpriseDao.findById(Integer.valueOf(enterpriseId)).get());
 
@@ -125,18 +121,11 @@ public class EnterpriseView extends AssistantAppLayout implements HasUrlParamete
         buttons.add(editButton, saveButton);
         enterpriseInformationLayout.add(buttons);
 
-        //Accordion
         accordion.add("Enterprise information", enterpriseInformationLayout);
         accordion.add("Audits information", auditsInformationLayout);
         accordion.setWidthFull();
 
     }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
-
 }
 
 

@@ -22,8 +22,8 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route("")
-public class EnterprisesView extends AssistantAppLayout {
+@Route(value = "", layout = AssistantAppLayout.class)
+public class EnterprisesView extends VerticalLayout {
 
     final private EnterpriseService enterpriseService;
     final private EnterpriseDao enterpriseDao;
@@ -80,9 +80,12 @@ public class EnterprisesView extends AssistantAppLayout {
         layout2.setAlignItems(FlexComponent.Alignment.END);
         layout3.setAlignItems(FlexComponent.Alignment.END);
 
+        /*
         VerticalLayout generalLayout = new VerticalLayout();
         generalLayout.add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, csvOutput);
         setContent(generalLayout);
+         */
+        add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, csvOutput);
 
     }
 
@@ -162,12 +165,6 @@ public class EnterprisesView extends AssistantAppLayout {
         endDatePicker.setPlaceholder("Filter by expiry date");
         endDatePicker.addValueChangeListener(e -> updateList());
     }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
-
 }
 
 

@@ -11,8 +11,8 @@ import com.vaadin.flow.router.Route;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;
 
-@Route("NewEnterprise")
-public class NewEnterpriseView extends AssistantAppLayout{
+@Route(value = "NewEnterprise", layout = AssistantAppLayout.class)
+public class NewEnterpriseView extends VerticalLayout{
 
     public NewEnterpriseView(EnterpriseDao enterpriseDao) {
 
@@ -68,12 +68,10 @@ public class NewEnterpriseView extends AssistantAppLayout{
 
 
         enterpriseInformationLayout.add(saveButton);
+        /*
         setContent(enterpriseInformationLayout);
+         */
+        add(enterpriseInformationLayout);
 
-    }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
     }
 }

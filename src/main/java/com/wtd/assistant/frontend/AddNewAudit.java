@@ -1,6 +1,5 @@
 package com.wtd.assistant.frontend;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -26,10 +25,9 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
-@Route("NewAudit")
-public class AddNewAudit extends AssistantAppLayout {
+@Route(value = "NewAudit", layout = AssistantAppLayout.class)
+public class AddNewAudit extends VerticalLayout {
 
     //Repositories, Services
     AuditDao auditDao;
@@ -76,7 +74,7 @@ public class AddNewAudit extends AssistantAppLayout {
         this.endDatePicker = new DatePicker();
 
         this.enterpriseTextField =  new TextField("Enterprise");
-        this.userComboBox = new ComboBox<>("Auditor(s)");
+        this.userComboBox = new ComboBox<>("Auditor");
         this.auditDatePicker = new DatePicker("Planed Date");
         this.addNewBtn = new Button("Add");
         this.getBackBtn = new Button("Cancel");
@@ -98,10 +96,7 @@ public class AddNewAudit extends AssistantAppLayout {
 
         HorizontalLayout layout1 = new HorizontalLayout(filter, datePicker, endDatePicker);
         HorizontalLayout layout2 = new HorizontalLayout(addNewBtn, getBackBtn);
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(header1, layout1, grid, header2, enterpriseTextField, userComboBox, auditDatePicker, layout2, dialog);
-
-        setContent(generalLayout);
+        add(header1, layout1, grid, header2, enterpriseTextField, userComboBox, auditDatePicker, layout2, dialog);
     }
 
     private void configureDialog() {
@@ -165,7 +160,6 @@ public class AddNewAudit extends AssistantAppLayout {
                 newAudit.setCompleted(false);
                 auditDao.save(newAudit);
                 dialog.open();
-
             }
         });
     }
@@ -179,14 +173,7 @@ public class AddNewAudit extends AssistantAppLayout {
         menu.addItem("Select", event -> {
             enterprise = grid.asSingleSelect().getValue();
             enterpriseBinder.setBean(enterprise);
-
         });
     }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
-
 }
 

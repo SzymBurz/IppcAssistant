@@ -24,8 +24,8 @@ import com.wtd.assistant.frontend.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route("Trips")
-public class TripsView extends AssistantAppLayout {
+@Route(value = "Trips", layout = AssistantAppLayout.class)
+public class TripsView extends VerticalLayout {
 
     TripDao tripDao;
     TripService tripService;
@@ -63,8 +63,12 @@ public class TripsView extends AssistantAppLayout {
         configureGrid();
         configureExportGrid();
         HorizontalLayout filterLayout = new HorizontalLayout(filter, datePicker, endDatePicker, userBox);
+        /*
         VerticalLayout generalLayout = new VerticalLayout();
         generalLayout.add(grid, exportGrid);
+        setContent(generalLayout);
+         */
+        add(grid, exportGrid);
 
     }
 
@@ -91,10 +95,4 @@ public class TripsView extends AssistantAppLayout {
             exportGrid.getDataProvider().refreshAll();
         });
     }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
-
 }

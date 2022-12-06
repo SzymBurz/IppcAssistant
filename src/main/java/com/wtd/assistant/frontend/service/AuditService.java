@@ -41,5 +41,9 @@ public class AuditService {
             auditDao.updateSecondTermByAuditId(secondTerm, auditId);
         }
     }
+    //TODO
+    public void findByFilter() {
+
+    }
 
 }

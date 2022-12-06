@@ -15,8 +15,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 
-@Route("Calendar")
-public class CalendarView extends AssistantAppLayout {
+@Route(value = "Calendar", layout = AssistantAppLayout.class)
+public class CalendarView extends VerticalLayout {
     AuditDao auditDao;
     UserDao userDao;
     EnterpriseDao enterpriseDao;
@@ -51,15 +51,7 @@ public class CalendarView extends AssistantAppLayout {
         gridSecTerm.addColumn(Audit -> userDao.findByAudits_AuditId(Audit.getAuditId())).setHeader("User");
         gridSecTerm.addColumn("remarks");
 
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(headerAudits, grid, headerSecTerm, gridSecTerm);
+        add(headerAudits, grid, headerSecTerm, gridSecTerm);
 
-        setContent(generalLayout);
     }
-
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
-
 }

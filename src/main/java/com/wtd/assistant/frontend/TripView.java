@@ -24,8 +24,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-@Route("Trip")
-public class TripView extends AssistantAppLayout {
+@Route(value = "Trip", layout = AssistantAppLayout.class)
+public class TripView extends VerticalLayout {
     final private TripService tripService;
     final private TripDao tripDao;
     final private CarDao carDao;
@@ -101,10 +101,12 @@ public class TripView extends AssistantAppLayout {
         VerticalLayout tripInformationLayout = new VerticalLayout(firstDay, secondDay, workTime);
         //tripInformationLayout.setSpacing(false);
         //tripInformationLayout.setPadding(false);
-
+        /*
         VerticalLayout generalLayout = new VerticalLayout();
         generalLayout.add(header, gridHeader, searchbarLayout, grid, auditsGridHeader, selectedAuditsGrid, expensesHeader, expenseGrid, expenseLayout, carLayout, tripInformationLayout, btnLayout);
         setContent(generalLayout);
+         */
+        add(header, gridHeader, searchbarLayout, grid, auditsGridHeader, selectedAuditsGrid, expensesHeader, expenseGrid, expenseLayout, carLayout, tripInformationLayout, btnLayout);
 
         configureGrid();
         configureSelectedAuditsGrid();
@@ -211,8 +213,4 @@ public class TripView extends AssistantAppLayout {
         });
     }
 
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
 }

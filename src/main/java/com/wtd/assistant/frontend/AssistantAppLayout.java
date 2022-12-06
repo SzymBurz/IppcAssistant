@@ -1,5 +1,6 @@
 package com.wtd.assistant.frontend;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H1;
@@ -10,6 +11,7 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.wtd.assistant.frontend.domain.Enterprise;
 
 
 //Nie wiem co z tym zrobić
@@ -32,18 +34,15 @@ public class AssistantAppLayout extends AppLayout {
 
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
-        tabs.add(createTab(VaadinIcon.FACTORY, "IPPC Codes"),
-                createTab(VaadinIcon.EYE, "Audits"),
-                createTab(VaadinIcon.CAR, "Trips"),
-                createTab(VaadinIcon.CALENDAR, "Calendar"));
-                //createTab(VaadinIcon.RECORDS, "Documents"),
-                //createTab(VaadinIcon.LIST, "Tasks"),
-                //createTab(VaadinIcon.CHART, "Analytics"));
+        tabs.add(createTab(VaadinIcon.FACTORY, "IPPC Codes", EnterprisesView.class),
+                createTab(VaadinIcon.EYE, "Audits", AuditView.class),
+                createTab(VaadinIcon.CAR, "Trips", TripsView.class),
+                createTab(VaadinIcon.CALENDAR, "Calendar", CalendarView.class));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;
     }
 
-    private Tab createTab(VaadinIcon viewIcon, String viewName) {
+    private Tab createTab(VaadinIcon viewIcon, String viewName, Class routing) {
         Icon icon = viewIcon.create();
         icon.getStyle().set("box-sizing", "border-box")
                 .set("margin-inline-end", "var(--lumo-space-m)")
@@ -52,8 +51,8 @@ public class AssistantAppLayout extends AppLayout {
 
         RouterLink link = new RouterLink();
         link.add(icon, new Span(viewName));
-        // Demo has no routes
-        link.setRoute(EnterprisesView.class);
+        link.setRoute(routing);
+
         link.setTabIndex(-1);
 
         return new Tab(link);

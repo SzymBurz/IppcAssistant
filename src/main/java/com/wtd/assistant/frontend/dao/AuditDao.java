@@ -34,6 +34,10 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
 
     List<Audit> findBySecondTermNotNullAndSecondTermGreaterThanEqual(LocalDate secondTerm);
 
+    @Query("select a from Audit a " +
+            "where (a.completed = true and a.user.userId = ?2) and upper(a.enterprise.name) like upper(concat('%', ?1, '%')) or upper(a.enterprise.ippcCode) like upper(concat('%', ?1, '%'))")
+    List<Audit> findByFilteringConditionsCompletedTrue(String name, int userId);
+
 
 
 

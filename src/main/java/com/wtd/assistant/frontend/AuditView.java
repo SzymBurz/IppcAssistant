@@ -6,6 +6,7 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.contextmenu.GridContextMenu;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -14,6 +15,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteParameters;
 import com.wtd.assistant.frontend.dao.AuditDao;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.dao.UserDao;
@@ -24,8 +26,8 @@ import com.wtd.assistant.frontend.service.AuditService;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import java.util.Collection;
 
-@Route("Audits")
-public class AuditView extends AssistantAppLayout {
+@Route(value = "Audits", layout = AssistantAppLayout.class)
+public class AuditView extends VerticalLayout {
 
     private AuditService auditService;
     private AuditDao auditDao;
@@ -58,17 +60,17 @@ public class AuditView extends AssistantAppLayout {
         this.enterpriseDao = enterpriseDao;
         this.grid = new Grid<>(Audit.class, false);
         this.filter = new TextField();
-        this.datePicker = new DatePicker();
-        this.secondTermDatePicker = new DatePicker();
-        this.addNewBtn = new Button("Add New");
+        this.datePicker = new DatePicker("Filter by date");
+        this.secondTermDatePicker = new DatePicker("Second Term");
+        this.addNewBtn = new Button("New Audit", VaadinIcon.PLUS.create());
         this.userBox = new ComboBox("Auditor");
         this.notCompleted = new Checkbox("Not completed");
         this.completed = new Checkbox("Completed");
-        this.enterpriseTextField = new TextField();
+        this.enterpriseTextField = new TextField("Enterprise");
         this.userBox2 = new ComboBox("Auditor");
-        this.auditDatePicker = new DatePicker();
-        this.completed2 = new Checkbox("completed");
-        this.remarks = new TextArea();
+        this.auditDatePicker = new DatePicker("Audit date");
+        this.completed2 = new Checkbox("Completed");
+        this.remarks = new TextArea("Remarks");
         this.saveChange = new Button("save");
         this.selectedAudit = null;
         this.auditBinder = new Binder<>(Audit.class);
@@ -80,12 +82,21 @@ public class AuditView extends AssistantAppLayout {
         configureGridMenu();
         configureAuditTextField();
         configureSaveButton();
+        configureAddNewBtn();
 
         HorizontalLayout layout = new HorizontalLayout(filter, datePicker, userBox, notCompleted, completed);
         layout.setAlignItems(FlexComponent.Alignment.BASELINE);
         HorizontalLayout layout2 = new HorizontalLayout(completed2, saveChange);
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(layout, grid, addNewBtn, enterpriseTextField, userBox2, auditDatePicker, remarks,secondTermDatePicker, layout2);
+        VerticalLayout layout3 = new VerticalLayout(addNewBtn);
+        layout3.setAlignItems(FlexComponent.Alignment.END);
+        add(layout, grid, layout3, enterpriseTextField, userBox2, auditDatePicker, remarks,secondTermDatePicker, layout2);
+
+    }
+
+    private void configureAddNewBtn() {
+        addNewBtn.addClickListener(e -> {
+            getUI().ifPresent(ui -> ui.navigate(AddNewAudit.class));
+        });
     }
 
     private void configureSaveButton() {
@@ -97,6 +108,7 @@ public class AuditView extends AssistantAppLayout {
     private void configureAuditTextField() {
         auditBinder.forField(auditDatePicker).bind("date");
         auditBinder.forField(remarks).bind("remarks");
+        auditBinder.forField(completed2).bind("completed");
     }
 
     private void configureGridMenu() {
@@ -108,8 +120,6 @@ public class AuditView extends AssistantAppLayout {
             completed2.setValue(selectedAudit.getCompleted());
             enterpriseTextField.setValue(
                     enterpriseDao.findByAudits_AuditId(selectedAudit.getAuditId()).get().getName());
-
-
         });
     }
 
@@ -128,7 +138,7 @@ public class AuditView extends AssistantAppLayout {
     }
 
     private void configureFilter() {
-        filter.setPlaceholder("Filter by Company Name/IPPC code");
+        filter.setLabel("Filter by Name/IPPC code");
         filter.setClearButtonVisible(true);
         filter.setValueChangeMode(ValueChangeMode.LAZY);
         filter.addValueChangeListener(e -> updateList());
@@ -139,10 +149,17 @@ public class AuditView extends AssistantAppLayout {
         completed.setLabel("completed");
     }
 
+    //TODO
     private void updateList() {
 
         grid.setItems(auditService.findAll(filter.getValue()));
+
+        //TODO TODO auditService.findByFilter
             /*
+
+            auditService.findByFilter(filter.getValue(), datePicker.getValue(), userBox.getValue(), notCompleted.getValue(), completed)
+
+
             if (datePicker.isEmpty()) {
                 grid.setItems(auditService.findAll(filter.getValue()));
             } else if (!datePicker.isEmpty() || !endDatePicker.isEmpty()) {
@@ -154,9 +171,5 @@ public class AuditView extends AssistantAppLayout {
              */
     }
 
-    @Override
-    public void setContent(Component content) {
-        super.setContent(content);
-    }
 
 }
