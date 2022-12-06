@@ -4,6 +4,7 @@ import com.wtd.assistant.frontend.dao.AuditDao;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Audit;
 import com.wtd.assistant.frontend.domain.Enterprise;
+import com.wtd.assistant.frontend.service.AuditService;
 import com.wtd.assistant.frontend.service.EnterpriseService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

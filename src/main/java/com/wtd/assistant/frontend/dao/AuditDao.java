@@ -34,13 +34,6 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
 
     List<Audit> findBySecondTermNotNullAndSecondTermGreaterThanEqual(LocalDate secondTerm);
 
-    @Query("select a from Audit a " +
-            "where (a.completed = true and a.user.userId = ?2) and upper(a.enterprise.name) like upper(concat('%', ?1, '%')) or upper(a.enterprise.ippcCode) like upper(concat('%', ?1, '%'))")
-    List<Audit> findByFilteringConditionsCompletedTrue(String name, int userId);
-
-
-
-
     @Modifying
     @Query("update Audit a set a.user = ?1 where a.auditId = ?2")
     void updateUserByAuditId(User user, int auditId);
@@ -48,8 +41,6 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
     @Modifying
     @Query("update Audit a set a.date = ?1 where a.auditId = ?2")
     void updateDateByAuditId(LocalDate date, int auditId);
-
-
 
     @Modifying
     @Query("update Audit a set a.completed = ?1 where a.auditId = ?2")
@@ -63,9 +54,6 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
     @Query("update Audit a set a.secondTerm = ?1 where a.auditId = ?2")
     void updateSecondTermByAuditId(LocalDate secondTerm, int auditId);
 
-
-
-    //Było zmieniane
     @Modifying
     @Query("update Audit a set a.tripId = ?2 where a.auditId = ?1")
     void updateTrip(int auditId, Trip tripId);
@@ -73,31 +61,6 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
     @Modifying
     @Query("update Audit a set a.completed = 1 where a.auditId = ?1")
     void setCompleted(int auditId);
-
-
-
-    //@Modifying
-    ///@Query("update Audit a set a.user = :user where a.auditId = :auditId")
-    //void updateUserByAuditId(@Param(value = "auditId")int auditId, @Param(value = "user")User user);
-
-
-
-
-
-    //select a from Audit a join a.enterprise e where e.name LIKE CONCAT('%', :searchTerm, '%')
-
-
-    //UPDATE
-
-    /*
-    @Transactional
-    @Modifying
-    @Query("update Audit a set a.name = :name where a.auditId = :auditId")
-    void updateName(@Param(value = "enterpriseId") int enterpriseId, @Param(value = "name") String name);
-
-     */
-
-
 
 
 }

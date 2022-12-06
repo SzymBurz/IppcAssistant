@@ -80,9 +80,10 @@ public class AuditView extends VerticalLayout {
         configureComboBox();
         configureGrid();
         configureGridMenu();
-        configureAuditTextField();
+        configureAuditFields();
         configureSaveButton();
         configureAddNewBtn();
+        configureDatePicker();
 
         HorizontalLayout layout = new HorizontalLayout(filter, datePicker, userBox, notCompleted, completed);
         layout.setAlignItems(FlexComponent.Alignment.BASELINE);
@@ -91,6 +92,10 @@ public class AuditView extends VerticalLayout {
         layout3.setAlignItems(FlexComponent.Alignment.END);
         add(layout, grid, layout3, enterpriseTextField, userBox2, auditDatePicker, remarks,secondTermDatePicker, layout2);
 
+    }
+
+    private void configureDatePicker() {
+        datePicker.addValueChangeListener(e -> updateList());
     }
 
     private void configureAddNewBtn() {
@@ -105,7 +110,7 @@ public class AuditView extends VerticalLayout {
         });
     }
 
-    private void configureAuditTextField() {
+    private void configureAuditFields() {
         auditBinder.forField(auditDatePicker).bind("date");
         auditBinder.forField(remarks).bind("remarks");
         auditBinder.forField(completed2).bind("completed");
@@ -135,6 +140,7 @@ public class AuditView extends VerticalLayout {
         userBox.setItemLabelGenerator(User::getName);
         userBox2.setItems((Collection<User>) userDao.findAll());
         userBox2.setItemLabelGenerator(User::getName);
+        userBox.addValueChangeListener(e -> updateList());
     }
 
     private void configureFilter() {
@@ -149,26 +155,10 @@ public class AuditView extends VerticalLayout {
         completed.setLabel("completed");
     }
 
-    //TODO
     private void updateList() {
 
-        grid.setItems(auditService.findAll(filter.getValue()));
+        grid.setItems(auditService.findAuditsByCriteria(filter.getValue(), datePicker.getValue(), userBox.getValue(), notCompleted.getValue(), completed.getValue()));
 
-        //TODO TODO auditService.findByFilter
-            /*
-
-            auditService.findByFilter(filter.getValue(), datePicker.getValue(), userBox.getValue(), notCompleted.getValue(), completed)
-
-
-            if (datePicker.isEmpty()) {
-                grid.setItems(auditService.findAll(filter.getValue()));
-            } else if (!datePicker.isEmpty() || !endDatePicker.isEmpty()) {
-                grid.setItems(enterpriseService.findByNameAndPeriod(filter.getValue(), datePicker.getValue(), endDatePicker.getValue()));
-            } else {
-
-            }
-
-             */
     }
 
 
