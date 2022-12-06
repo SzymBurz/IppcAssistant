@@ -103,7 +103,6 @@ public class AddNewAudit extends VerticalLayout {
         dialog.setHeaderTitle(String.format("Audit created"));
         Button closeButton = new Button("Close", (e) -> {
             dialog.close();
-            enterpriseTextField.setReadOnly(true);
             userComboBox.setReadOnly(true);
             auditDatePicker.setReadOnly(true);
         });
@@ -165,7 +164,9 @@ public class AddNewAudit extends VerticalLayout {
     }
 
     private void configureEnterpriseBinder() {
+
         enterpriseBinder.forField(enterpriseTextField).bind("name");
+        enterpriseTextField.setReadOnly(true);
     }
 
     private void configureGridMenu() {
@@ -173,6 +174,11 @@ public class AddNewAudit extends VerticalLayout {
         menu.addItem("Select", event -> {
             enterprise = grid.asSingleSelect().getValue();
             enterpriseBinder.setBean(enterprise);
+            userComboBox.setReadOnly(false);
+            userComboBox.clear();
+            auditDatePicker.setReadOnly(false);
+            auditDatePicker.clear();
+            addNewBtn.setEnabled(true);
         });
     }
 }

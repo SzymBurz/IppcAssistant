@@ -38,7 +38,7 @@ public class CalendarView extends VerticalLayout {
         this.gridSecTerm = new Grid<>(Audit.class, false);
 
 
-        grid.setItems(auditDao.findByDateGreaterThanEqual(LocalDate.now(ZoneId.of("Europe/Paris"))));
+        grid.setItems(auditDao.findByDateGreaterThanEqualAndCompletedFalse(LocalDate.now(ZoneId.of("Europe/Paris"))));
         grid.setHeight("200px");
         grid.setColumns("date");
         grid.addColumn(Audit -> enterpriseDao.findByAudits_AuditId(Audit.getAuditId()).get()).setHeader("Enterprise");
@@ -46,7 +46,7 @@ public class CalendarView extends VerticalLayout {
 
         gridSecTerm.setItems(auditDao.findBySecondTermNotNullAndSecondTermGreaterThanEqual(LocalDate.now(ZoneId.of("Europe/Paris"))));
         gridSecTerm.setHeight("200px");
-        gridSecTerm.addColumn("secondTerm").setHeader("date");
+        gridSecTerm.addColumn("secondTerm").setHeader("Second Term");
         gridSecTerm.addColumn(Audit -> enterpriseDao.findByAudits_AuditId(Audit.getAuditId()).get()).setHeader("Enterprise");
         gridSecTerm.addColumn(Audit -> userDao.findByAudits_AuditId(Audit.getAuditId())).setHeader("User");
         gridSecTerm.addColumn("remarks");

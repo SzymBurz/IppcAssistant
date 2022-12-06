@@ -1,6 +1,6 @@
 package com.wtd.assistant.frontend;
 
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.contextmenu.ContextMenu;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -11,9 +11,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.wtd.assistant.frontend.dao.AuditDao;
 import com.wtd.assistant.frontend.dao.TripDao;
-import com.wtd.assistant.frontend.domain.Audit;
+import com.wtd.assistant.frontend.dao.UserDao;
 import com.wtd.assistant.frontend.domain.Trip;
 import com.wtd.assistant.frontend.domain.User;
 import com.wtd.assistant.frontend.service.AuditService;
@@ -21,7 +20,9 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import com.wtd.assistant.frontend.service.TripService;
 import com.wtd.assistant.frontend.service.UserService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Route(value = "Trips", layout = AssistantAppLayout.class)
@@ -30,6 +31,7 @@ public class TripsView extends VerticalLayout {
     TripDao tripDao;
     TripService tripService;
     AuditService auditService;
+    UserDao userDao;
     EnterpriseService enterpriseService;
     UserService userService;
     H2 header;
@@ -42,34 +44,60 @@ public class TripsView extends VerticalLayout {
     Grid<Trip> exportGrid;
     TextArea output;
     List<Trip> tripsToExport;
+    Button settleNewButton;
 
-    public TripsView(TripDao tripDao, TripService tripService, EnterpriseService enterpriseService, AuditService auditService, UserService userService) {
+    public TripsView(TripDao tripDao, TripService tripService, EnterpriseService enterpriseService, AuditService auditService, UserService userService, UserDao userDao) {
         this.tripDao = tripDao;
         this.tripService = tripService;
         this.enterpriseService = enterpriseService;
         this.auditService = auditService;
         this.userService = userService;
+        this.userDao = userDao;
         this.header = new H2("Trips");
-        this.filter = new TextField();
-        this.datePicker = new DatePicker();
-        this.endDatePicker = new DatePicker();
-        this.userBox = new ComboBox<>();
+        this.filter = new TextField("Filter by Enterprise/IPPC code");
+        this.datePicker = new DatePicker("Filter by period: start");
+        this.endDatePicker = new DatePicker("end");
+        this.userBox = new ComboBox<>("Filter by auditor");
         this.grid = new Grid<>(Trip.class);
         this.exportHeader = new H2("Export");
         this.exportGrid = new Grid<>(Trip.class);
         this.output = new TextArea("export");
         this.tripsToExport = new ArrayList<>();
+        this.settleNewButton = new Button("Settle new Trip");
 
         configureGrid();
         configureExportGrid();
-        HorizontalLayout filterLayout = new HorizontalLayout(filter, datePicker, endDatePicker, userBox);
-        /*
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(grid, exportGrid);
-        setContent(generalLayout);
-         */
-        add(grid, exportGrid);
+        configureBtn();
+        configureFilter();
+        configureDatePickers();
+        configureUserBox();
 
+        HorizontalLayout filterLayout = new HorizontalLayout(filter, datePicker, endDatePicker, userBox);
+        VerticalLayout btnLayout = new VerticalLayout(settleNewButton);
+        btnLayout.setAlignItems(Alignment.END);
+        add(filterLayout, grid, btnLayout, exportGrid);
+
+    }
+
+    private void configureUserBox() {
+        userBox.setItems((Collection<User>) userDao.findAll());
+        userBox.addValueChangeListener(e -> refreshGrid());
+    }
+
+    private void configureDatePickers() {
+        datePicker.addValueChangeListener(e -> refreshGrid());
+        endDatePicker.addValueChangeListener(e -> refreshGrid());
+    }
+
+    private void configureFilter() {
+        filter.addValueChangeListener(e -> refreshGrid());
+    }
+
+
+    private void configureBtn() {
+        settleNewButton.addClickListener(e -> {
+           getUI().ifPresent(ui -> ui.navigate(TripView.class));
+        });
     }
 
     private void configureExportGrid() {
@@ -94,5 +122,10 @@ public class TripsView extends VerticalLayout {
             tripsToExport.add(grid.asSingleSelect().getValue());
             exportGrid.getDataProvider().refreshAll();
         });
+    }
+
+    private void refreshGrid() {
+        grid.setItems(tripService.findAuditsByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), userBox.getValue()));
+        grid.getDataProvider().refreshAll();
     }
 }

@@ -15,12 +15,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteParameters;
 import com.wtd.assistant.frontend.dao.AuditDao;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.dao.UserDao;
 import com.wtd.assistant.frontend.domain.Audit;
-import com.wtd.assistant.frontend.domain.Enterprise;
 import com.wtd.assistant.frontend.domain.User;
 import com.wtd.assistant.frontend.service.AuditService;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -153,6 +151,8 @@ public class AuditView extends VerticalLayout {
     private void configureCheckBoxes() {
         notCompleted.setLabel("not completed");
         completed.setLabel("completed");
+        notCompleted.addValueChangeListener(e -> updateList());
+        completed.addValueChangeListener(e -> updateList());
     }
 
     private void updateList() {

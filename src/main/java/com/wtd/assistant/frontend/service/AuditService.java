@@ -47,10 +47,10 @@ public class AuditService {
             predicateList.add(userPredicate);
         }
         if (!completed && notCompleted) {
-            Predicate completedPredicate = cb.equal(audit.get("completed"), false);
+            Predicate completedPredicate = cb.equal(audit.get("completed"), 0);
             predicateList.add(completedPredicate);
         } else if (completed && !notCompleted) {
-            Predicate completedPredicate = cb.equal(audit.get("completed"), true);
+            Predicate completedPredicate = cb.equal(audit.get("completed"), 1);
             predicateList.add(completedPredicate);
         }
 

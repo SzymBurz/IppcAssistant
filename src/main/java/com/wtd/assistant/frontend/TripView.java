@@ -99,13 +99,7 @@ public class TripView extends VerticalLayout {
         HorizontalLayout btnLayout = new HorizontalLayout(addNew, cancelBtn);
         HorizontalLayout carLayout = new HorizontalLayout(carComboBox, carCounterBefore, carCounterAfter);
         VerticalLayout tripInformationLayout = new VerticalLayout(firstDay, secondDay, workTime);
-        //tripInformationLayout.setSpacing(false);
-        //tripInformationLayout.setPadding(false);
-        /*
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(header, gridHeader, searchbarLayout, grid, auditsGridHeader, selectedAuditsGrid, expensesHeader, expenseGrid, expenseLayout, carLayout, tripInformationLayout, btnLayout);
-        setContent(generalLayout);
-         */
+
         add(header, gridHeader, searchbarLayout, grid, auditsGridHeader, selectedAuditsGrid, expensesHeader, expenseGrid, expenseLayout, carLayout, tripInformationLayout, btnLayout);
 
         configureGrid();

@@ -14,6 +14,10 @@ public interface UserDao extends CrudRepository<User, Integer> {
     @Query("select u from User u inner join u.audits audits where audits.tripId.tripId = ?1")
     Optional<User> findByAudits_TripId_TripId(int tripId);
 
+    Optional<User> findByUserId(int userId);
+
+
+
 
 
 

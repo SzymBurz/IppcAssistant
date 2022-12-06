@@ -32,6 +32,10 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
 
     List<Audit> findByDateGreaterThanEqual(LocalDate date);
 
+    List<Audit> findByDateGreaterThanEqualAndCompletedFalse(LocalDate date);
+
+
+
     List<Audit> findBySecondTermNotNullAndSecondTermGreaterThanEqual(LocalDate secondTerm);
 
     @Modifying
