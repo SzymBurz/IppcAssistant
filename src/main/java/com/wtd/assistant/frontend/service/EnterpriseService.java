@@ -42,7 +42,17 @@ public class EnterpriseService {
         StringBuilder stringBuilder = new StringBuilder(100);
 
         for(Enterprise e : enterpriseList) {
-            stringBuilder.append(e.getName() + " ");
+            stringBuilder.append(e.getName() + " " + e.getIppcCode() + " ");
+        }
+        return stringBuilder.toString();
+    }
+
+    public String enterprisesByAuditTripIdToStringNextLine(int tripId) {
+        List<Enterprise> enterpriseList = enterpriseDao.findByAudits_TripId_TripId(tripId);
+        StringBuilder stringBuilder = new StringBuilder(100);
+
+        for(Enterprise e : enterpriseList) {
+            stringBuilder.append("\n" + e.getName() + " " + e.getIppcCode());
         }
         return stringBuilder.toString();
     }

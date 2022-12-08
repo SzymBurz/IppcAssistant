@@ -54,10 +54,10 @@ public class TripService {
         }
         else if(filter == null && datePicker ==null && endDatePicker == null && userBox != null ) {
             return tripDao.findByCriteriaUser(userBox);
-        } else {
+        }
+        else {
             return (List<Trip>) tripDao.findAll();
         }
-
 
 
 

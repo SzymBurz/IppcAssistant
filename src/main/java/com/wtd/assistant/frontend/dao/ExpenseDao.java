@@ -16,4 +16,8 @@ public interface ExpenseDao extends CrudRepository<Expense, Integer > {
     @Query("update Expense e set e.tripId = ?2 where e.expense_id = ?1")
     void updateTrip(int expense_id, Trip trip);
 
+    List<Expense> findByTripId_TripId(int tripId);
+
+
+
 }

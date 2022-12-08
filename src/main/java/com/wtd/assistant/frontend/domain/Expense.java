@@ -33,7 +33,7 @@ public class Expense {
 
     @Override
     public String toString() {
-        return tripId + " " + amount + " " + description;
+        return amount + " " + description;
     }
 
     public Expense(double amount, String description) {

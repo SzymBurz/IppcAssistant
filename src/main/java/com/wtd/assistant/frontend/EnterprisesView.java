@@ -1,6 +1,5 @@
 package com.wtd.assistant.frontend;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
@@ -17,7 +16,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.*;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;
-import com.wtd.assistant.frontend.generator.CsvGenerator;
+import com.wtd.assistant.frontend.generator.EnterpriseSummaryGenerator;
 import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +36,8 @@ public class EnterprisesView extends VerticalLayout {
     private H2 gridHeader;
     private H2 exportGridHeader;
     private Button exportButton;
-    private TextArea csvOutput;
-    private CsvGenerator generator;
+    private TextArea output;
+    private EnterpriseSummaryGenerator generator;
 
     //dodać filtrowanie wyników
     //dodać sortowanie: po województwie/misiącu
@@ -47,7 +46,7 @@ public class EnterprisesView extends VerticalLayout {
     //dodanie statusów do przedsiębiorstw: ważny certyfikat/nieważny certyfikat
     //klasa wysyłająca powiadomienia 
 
-    public EnterprisesView(EnterpriseDao enterpriseDao, EnterpriseService enterpriseService) {
+    public EnterprisesView(EnterpriseDao enterpriseDao, EnterpriseService enterpriseService, EnterpriseSummaryGenerator generator) {
         this.enterpriseService = enterpriseService;
         this.enterpriseDao = enterpriseDao;
         this.grid = new Grid<>(Enterprise.class);
@@ -60,8 +59,8 @@ public class EnterprisesView extends VerticalLayout {
         this.gridHeader = new H2("Enterprises");
         this.exportGridHeader = new H2("Export");
         this.exportButton = new Button("Export Data");
-        this.csvOutput = new TextArea();
-        this.generator = new CsvGenerator();
+        this.output = new TextArea();
+        this.generator = generator;
 
         configureFilter();
         configureAddNewButton();
@@ -72,6 +71,7 @@ public class EnterprisesView extends VerticalLayout {
         configureGridContextMenu();
         configureExportGrid();
         configureExportGridMenu();
+        configureOutputArea();
 
 
         HorizontalLayout layout = new HorizontalLayout(filter, datePicker, endDatePicker, addNewBtn);
@@ -85,8 +85,12 @@ public class EnterprisesView extends VerticalLayout {
         generalLayout.add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, csvOutput);
         setContent(generalLayout);
          */
-        add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, csvOutput);
+        add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, output);
 
+    }
+
+    private void configureOutputArea() {
+        output.setWidthFull();
     }
 
     private void configureExportGridMenu() {
@@ -133,7 +137,7 @@ public class EnterprisesView extends VerticalLayout {
     }
 
     private void configureExportButton() {
-        exportButton.addClickListener(e -> generator.export(exportSelection, csvOutput));
+        exportButton.addClickListener(e -> generator.generateSummary(exportSelection, output));
     }
 
     private void configureFilter() {
