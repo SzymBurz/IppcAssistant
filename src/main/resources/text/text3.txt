@@ -1,0 +1,13 @@
+<h2>About</h2>
+<p style="text-indent: 40px">An Inspiration for this app was my work in Wood Technology Institute, where I was doing auditor work for wood industry certification.<br>
+Workflow of the documents, and whole certification process, from beginning to end was based on handmade notes and paper documents.<br>
+There was no system or tool that would help auditors do their work whatsoever, only one's people knowledge and lots of document binders.<br>
+<p style="text-indent: 40px">This specific certificate, which was IPPC certificate was mandatory for international shipping of wooden packages and other wooden goods.<br>
+It's purpose was to assure that wood in plant underwent heat treatment in order to disinfect wood from invasive microorganisms and insects,<br>
+and It had to be renewed once every 2 years. The list of manufacturers with active is public and available at institute's site:<br>
+<a href="https://pit.lukasiewicz.gov.pl/wp-content/uploads/2022/05/krajowy_wykaz_kodow_ippc_29_04_2022.pdf">https://pit.lukasiewicz.gov.pl/wp-content/uploads/2022/05/krajowy_wykaz_kodow_ippc_29_04_2022.pdf</a><br>
+<p style="text-indent: 40px">Polish wood industry is quite large, as there was 700+ enterprises with active certificate.<br>
+To work with that number means a lot of paper work, and checking if everyone's status is correct.<br>
+Very often during audit, there's need for subject to send some additional documents, or implement some changes.<br>
+In this case there was need for checking on it in some given time if he sent required documents or implemented advised changes.<br>
+Keeping track of it was very hard, and decentralized, as every auditor had it's own subjected enterprises.<br>

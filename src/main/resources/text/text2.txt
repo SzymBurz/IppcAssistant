@@ -1,0 +1,8 @@
+<h2>Functionalities</h2>
+<p style="text-indent: 40px"> To keep record of every subject status and history, and to generate raports from the subjects of given properties<br>
+Other important functiolity is settling trips. During one trip there can be several audits.<br>
+During trip auditor has many different spendings. Fuel and highway fees mostly, but if trip is more than one day<br>
+we need to take into accout food and accomodity expenses. Also car as a Institute's property, is under strict control<br>
+Because of that there was need for generating trip summary, and later generate statistics from it<br>.
+Also, as certificate is something that has its exiry date, and for reminders of incoming dates for certain events, calendar was introduced.<br/>
+<p style="text-indent: 40px"> As for now only basic workflow, raport generation and calendar were implemented. 
