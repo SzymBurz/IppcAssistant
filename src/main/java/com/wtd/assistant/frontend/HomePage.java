@@ -22,16 +22,12 @@ import java.util.List;
 @Route(value = "Home", layout = AssistantAppLayout.class)
 public class HomePage extends VerticalLayout{
 
-    StreamResource imageResource1 = new StreamResource("1.jpg", () -> getClass().getResourceAsStream("/images/1.jpg"));
-    StreamResource imageResource2 = new StreamResource("2.jpg", () -> getClass().getResourceAsStream("/images/2.jpg"));
-    StreamResource imageResource3 = new StreamResource("3.jpg", () -> getClass().getResourceAsStream("/images/3.jpg"));
-    StreamResource imageResource4 = new StreamResource("4.jpg", () -> getClass().getResourceAsStream("/images/4.jpg"));
-    StreamResource imageResource5 = new StreamResource("5.jpg", () -> getClass().getResourceAsStream("/images/5.jpg"));
+    StreamResource imageResource1 = new StreamResource("7.jpg", () -> getClass().getResourceAsStream("/images/7.jpg"));
+    StreamResource imageResource2 = new StreamResource("16.jpg", () -> getClass().getResourceAsStream("/images/16.jpg"));
+    StreamResource imageResource3 = new StreamResource("18.jpg", () -> getClass().getResourceAsStream("/images/18.jpg"));
+    StreamResource imageResource4 = new StreamResource("19.jpg", () -> getClass().getResourceAsStream("/images/19.jpg"));
+    StreamResource imageResource5 = new StreamResource("12.jpg", () -> getClass().getResourceAsStream("/images/12.jpg"));
     StreamResource imageResource6 = new StreamResource("6.jpg", () -> getClass().getResourceAsStream("/images/6.jpg"));
-    StreamResource imageResource7 = new StreamResource("7.jpg", () -> getClass().getResourceAsStream("/images/7.jpg"));
-    StreamResource imageResource8 = new StreamResource("8.jpg", () -> getClass().getResourceAsStream("/images/8.jpg"));
-
-    StreamResource textResource1 = new StreamResource("text1.txt", () -> getClass().getResourceAsStream("/text/text1.txt"));
 
     List<Image> imageList = new ArrayList<>();
     Image image1 = new Image(imageResource1, "myImg");
