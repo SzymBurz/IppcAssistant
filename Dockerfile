@@ -1,4 +1,7 @@
-FROM openjdk:12-jdk-alpine
-COPY . .
-COPY --from=build /libs/demo-0.0.1-SNAPSHOT.jar demo.jar
-ENTRYPOINT ["java","-jar","demo.jar"]
+FROM openjdk:11
+WORKDIR /
+ADD build/libs/assistant_vaadin-0.0.1-SNAPSHOT.jar app.jar
+RUN useradd -m myuser
+USER myuser
+EXPOSE 8090
+CMD java -jar -Dspring.profiles.active=prod app.jar
