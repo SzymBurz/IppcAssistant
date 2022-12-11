@@ -5,6 +5,7 @@ import com.wtd.assistant.frontend.domain.Audit;
 import com.wtd.assistant.frontend.domain.Enterprise;
 import com.wtd.assistant.frontend.domain.Trip;
 import com.wtd.assistant.frontend.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface AuditDao extends CrudRepository<Audit, Integer> {
+public interface AuditDao extends JpaRepository<Audit, Integer> {
 
     List<Audit> findByEnterprise(Optional<Enterprise> enterprise);
     List<Audit> findAll();
