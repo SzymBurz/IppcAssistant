@@ -2,7 +2,6 @@ package com.wtd.assistant.frontend.dao;
 
 import com.wtd.assistant.frontend.domain.Enterprise;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface EnterpriseDao extends JpaRepository<Enterprise, Integer> {
+public interface EnterpriseDao extends CrudRepository<Enterprise, Integer> {
 
     //W HQL zawsze nazwa klasy nie tabeli: Enterprise a nie ENTERPRISES
 
