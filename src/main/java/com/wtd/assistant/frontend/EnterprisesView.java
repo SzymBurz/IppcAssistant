@@ -21,7 +21,7 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(value = "", layout = AssistantAppLayout.class)
+@Route(value = "Enterprises", layout = AssistantAppLayout.class)
 public class EnterprisesView extends VerticalLayout {
 
     final private EnterpriseService enterpriseService;

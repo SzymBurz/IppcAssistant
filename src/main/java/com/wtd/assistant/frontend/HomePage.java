@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.List;
 
-@Route(value = "Home", layout = AssistantAppLayout.class)
+@Route(value = "", layout = AssistantAppLayout.class)
 public class HomePage extends VerticalLayout{
 
     StreamResource imageResource1 = new StreamResource("7.jpg", () -> getClass().getResourceAsStream("/images/7.jpg"));
