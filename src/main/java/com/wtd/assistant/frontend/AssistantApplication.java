@@ -1,8 +1,7 @@
 package com.wtd.assistant.frontend;
 
 import com.wtd.assistant.frontend.dao.*;
-import com.wtd.assistant.frontend.domain.Audit;
-import com.wtd.assistant.frontend.domain.Enterprise;
+import com.wtd.assistant.frontend.domain.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +9,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @SpringBootApplication
@@ -20,12 +20,11 @@ public class AssistantApplication {
 
     }
 
-
-
-    /*
     @Bean
-    public CommandLineRunner loadData (EnterpriseDao enterpriseDao, AuditDao auditDao, TripDao tripDao, UserDao userDao, CarDao carDao) {
+    public CommandLineRunner loadData(EnterpriseDao enterpriseDao, AuditDao auditDao, TripDao tripDao, UserDao userDao, CarDao carDao) {
+
         return (args) -> {
+/*
             List<Enterprise> enterpriseList = new ArrayList<>();
             enterpriseDao.findAll().forEach(enterpriseList::add);
 
@@ -43,19 +42,25 @@ public class AssistantApplication {
             List<Audit> auditList = new ArrayList<>();
             auditList.addAll(auditDao.findAll());
 
-            for(int i = 0; i == auditList.size()-1; i++) {
-
+            for (int i = 0; i == auditList.size() - 1; i++) {
+                tripDao.save(new Trip();
             }
 
 
-            /*
-            for (Enterprise e : enterpriseList) {
-                System.out.println("enterpriseDao.save(new Enterprise(" + e.getIppcCode() +", "+ e.getName() +", LocalDate.parse("+ e.getExpiryDate()+")));");
-             */
 
-                /*
+
+            for (Enterprise e : enterpriseList) {
+                System.out.println("enterpriseDao.save(new Enterprise(" + e.getIppcCode() + ", " + e.getName() + ", LocalDate.parse(" + e.getExpiryDate() + ")));");
+
+
+
+*/
+                //FOR ONLINE DATABASE VERSION ONLY!!! DO NOT RUN ON LOCAL
                 enterpriseDao.deleteAll();
                 auditDao.deleteAll();
+                userDao.deleteAll();
+                carDao.deleteAll();
+                tripDao.deleteAll();
 
                 enterpriseDao.save(new Enterprise("PL-22 008", "TOR-PAL", LocalDate.parse("2022-07-16")));
                 enterpriseDao.save(new Enterprise("PL-12 006", "C.M.C.", LocalDate.parse("2023-10-26")));
@@ -79,13 +84,20 @@ public class AssistantApplication {
                 enterpriseDao.save(new Enterprise("PL-32 027", "INTER-PACK", LocalDate.parse("2024-02-03")));
                 enterpriseDao.save(new Enterprise("PL-22 028", "COMPANY LTD", LocalDate.parse("2023-04-11")));
 
+                carDao.save(new Car("Dacia Duster", "PO2433", 0));
+                carDao.save(new Car("Kia Ceed", "PO2534", 0));
+                carDao.save(new Car("Suzuki Vitara", "PO3639", 0));
+                carDao.save(new Car("Polonez Caro", "PZ1223", 0));
 
-
+                userDao.save(new User("Dominik Młodzionek"));
+                userDao.save(new User("Łukasz Zły"));
+                userDao.save(new User("Wojciech Damianowski"));
+                userDao.save(new User("Anna Fett"));
+                userDao.save(new User("Szymon Murzyński"));
 
             };
-        };
 
-        */
+        }
     }
 
 
