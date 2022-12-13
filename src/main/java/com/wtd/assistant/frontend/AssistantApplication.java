@@ -6,6 +6,8 @@ import com.wtd.assistant.frontend.domain.Enterprise;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import java.util.*;
@@ -15,13 +17,12 @@ public class AssistantApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(com.wtd.assistant.frontend.AssistantApplication.class, args);
+
     }
 
+
+
     /*
-
-
-
-
     @Bean
     public CommandLineRunner loadData (EnterpriseDao enterpriseDao, AuditDao auditDao, TripDao tripDao, UserDao userDao, CarDao carDao) {
         return (args) -> {
