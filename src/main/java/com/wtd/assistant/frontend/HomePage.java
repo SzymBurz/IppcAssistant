@@ -61,9 +61,17 @@ public class HomePage extends VerticalLayout{
                 .lines()
                 .collect(Collectors.joining("\n"));
 
+        Label label3 = new Label();
+        InputStream is3 = getClass().getClassLoader().getResourceAsStream("text/text1.txt");
+        String text3 = new BufferedReader(
+                new InputStreamReader(is3, StandardCharsets.UTF_8))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
 
         label1.getElement().setProperty("innerHTML", text1);
         label2.getElement().setProperty("innerHTML", text2);
+        label3.getElement().setProperty("innerHTML", text3);
 
         configureImages();
         HorizontalLayout imageLayout1 = new HorizontalLayout(image1, image2, image3);
@@ -72,7 +80,7 @@ public class HomePage extends VerticalLayout{
         HorizontalLayout imageLayout2 = new HorizontalLayout(image4, image5, image6);
         imageLayout2.setAlignItems(Alignment.STRETCH);
 
-        add(label1, imageLayout1, label2, imageLayout2);
+        add(label1, imageLayout1, label2, imageLayout2, label3);
 
 
     }
