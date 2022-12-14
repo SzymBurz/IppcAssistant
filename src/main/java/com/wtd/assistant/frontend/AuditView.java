@@ -110,7 +110,10 @@ public class AuditView extends VerticalLayout {
 
     private void configureAuditFields() {
         auditBinder.forField(auditDatePicker).bind("date");
+        auditBinder.forField(secondTermDatePicker).bind("secondTerm");
         auditBinder.forField(remarks).bind("remarks");
+        auditBinder.forField(completed2).bind("completed");
+        auditBinder.forField(userBox2).bind("user");
         auditBinder.forField(completed2).bind("completed");
     }
 
@@ -119,8 +122,7 @@ public class AuditView extends VerticalLayout {
         menu.addItem("Select", event -> {
             selectedAudit = grid.asSingleSelect().getValue();
             auditBinder.setBean(selectedAudit);
-            userBox2.setValue(selectedAudit.getUser());
-            completed2.setValue(selectedAudit.getCompleted());
+            completed2.setReadOnly(true);
             enterpriseTextField.setValue(
                     enterpriseDao.findByAudits_AuditId(selectedAudit.getAuditId()).get().getName());
         });
