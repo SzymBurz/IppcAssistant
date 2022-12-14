@@ -46,7 +46,7 @@ dependencies {
 
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter'
-
+	implementation 'org.postgresql:postgresql:42.5.1'
 }
 
 dependencyManagement {
