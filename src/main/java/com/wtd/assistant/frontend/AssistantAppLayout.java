@@ -34,7 +34,8 @@ public class AssistantAppLayout extends AppLayout {
 
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
-        tabs.add(createTab(VaadinIcon.FACTORY, "IPPC Codes", EnterprisesView.class),
+        tabs.add( createTab(VaadinIcon.HOME, "Home", HomePage.class),
+                createTab(VaadinIcon.FACTORY, "IPPC Codes", EnterprisesView.class),
                 createTab(VaadinIcon.EYE, "Audits", AuditView.class),
                 createTab(VaadinIcon.CAR, "Trips", TripsView.class),
                 createTab(VaadinIcon.CALENDAR, "Calendar", CalendarView.class));
