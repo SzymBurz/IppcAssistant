@@ -16,7 +16,7 @@ public class EnterpriseSummaryGenerator {
             for(Enterprise e : enterprises) {
                 builder.append("\n Name: " + e.getName());
                 builder.append("\n IPPC code: " + e.getIppcCode());
-                builder.append("\n Name: " + e.getExpiryDate());
+                builder.append("\n Expiry date: " + e.getExpiryDate());
                 builder.append("\n ");
             }
             textArea.setValue(builder.toString());
