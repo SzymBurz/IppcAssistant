@@ -1,18 +1,13 @@
 package com.wtd.assistant.frontend;
 
-import com.helger.commons.io.file.FileOperations;
-import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Unit;
-import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
-import org.apache.commons.io.FileUtils;
 
-import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;

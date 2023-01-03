@@ -30,11 +30,11 @@ import java.util.List;
 public class AddNewAudit extends VerticalLayout {
 
     //Repositories, Services
-    AuditDao auditDao;
-    AuditService auditService;
-    UserDao userDao;
-    EnterpriseDao enterpriseDao;
-    EnterpriseService enterpriseService;
+    private AuditDao auditDao;
+    private AuditService auditService;
+    private UserDao userDao;
+    private EnterpriseDao enterpriseDao;
+    private EnterpriseService enterpriseService;
 
     private H2 header1;
     private H2 header2;
@@ -47,15 +47,15 @@ public class AddNewAudit extends VerticalLayout {
     private DatePicker endDatePicker;
 
     //Audit part
-    String enterpriseId;
-    TextField enterpriseTextField;
-    ComboBox<User> userComboBox;
-    DatePicker auditDatePicker;
-    Button addNewBtn;
-    Button getBackBtn;
-    Binder<Enterprise> enterpriseBinder;
-    Enterprise  enterprise;
-    Dialog dialog;
+    private String enterpriseId;
+    private TextField enterpriseTextField;
+    private ComboBox<User> userComboBox;
+    private DatePicker auditDatePicker;
+    private Button addNewBtn;
+    private Button getBackBtn;
+    private Binder<Enterprise> enterpriseBinder;
+    private Enterprise  enterprise;
+    private Dialog dialog;
 
     public AddNewAudit(UserDao userDao, AuditDao auditDao, AuditService auditService, EnterpriseDao enterpriseDao, EnterpriseService enterpriseService) {
 

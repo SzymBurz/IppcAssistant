@@ -17,14 +17,14 @@ import java.time.ZoneId;
 
 @Route(value = "Calendar", layout = AssistantAppLayout.class)
 public class CalendarView extends VerticalLayout {
-    AuditDao auditDao;
-    UserDao userDao;
-    EnterpriseDao enterpriseDao;
+    final private AuditDao auditDao;
+    final private UserDao userDao;
+    final private EnterpriseDao enterpriseDao;
 
-    H2 headerAudits;
-    H2 headerSecTerm;
-    Grid<Audit> grid;
-    Grid<Audit> gridSecTerm;
+    private H2 headerAudits;
+    private H2 headerSecTerm;
+    private Grid<Audit> grid;
+    private Grid<Audit> gridSecTerm;
 
 
 

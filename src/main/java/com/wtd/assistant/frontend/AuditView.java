@@ -27,10 +27,10 @@ import java.util.Collection;
 @Route(value = "Audits", layout = AssistantAppLayout.class)
 public class AuditView extends VerticalLayout {
 
-    private AuditService auditService;
-    private AuditDao auditDao;
-    private UserDao userDao;
-    private EnterpriseDao enterpriseDao;
+    final private AuditService auditService;
+    final private AuditDao auditDao;
+    final private UserDao userDao;
+    final private EnterpriseDao enterpriseDao;
     private Grid<Audit> grid;
     private TextField filter;
     private DatePicker datePicker;
@@ -38,18 +38,15 @@ public class AuditView extends VerticalLayout {
     private ComboBox<User> userBox;
     private Checkbox notCompleted;
     private Checkbox completed;
-
-    TextField enterpriseTextField;
-    ComboBox<User> userBox2;
-    DatePicker auditDatePicker;
-    DatePicker secondTermDatePicker;
-    Checkbox completed2;
-    TextArea remarks;
-    Button saveChange;
-
-    Audit selectedAudit;
-
-    Binder auditBinder;
+    private TextField enterpriseTextField;
+    private ComboBox<User> userBox2;
+    private DatePicker auditDatePicker;
+    private DatePicker secondTermDatePicker;
+    private Checkbox completed2;
+    private TextArea remarks;
+    private Button saveChange;
+    private Audit selectedAudit;
+    private Binder auditBinder;
 
     public AuditView(AuditService auditService, AuditDao auditDao, UserDao userDao, EnterpriseDao enterpriseDao) {
         this.auditService = auditService;
