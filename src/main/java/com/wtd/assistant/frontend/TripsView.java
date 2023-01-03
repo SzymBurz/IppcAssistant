@@ -30,25 +30,25 @@ import java.util.*;
 @Route(value = "Trips", layout = AssistantAppLayout.class)
 public class TripsView extends VerticalLayout {
 
-    TripDao tripDao;
-    TripService tripService;
-    AuditService auditService;
-    UserDao userDao;
-    EnterpriseService enterpriseService;
-    UserService userService;
-    H2 header;
-    TextField filter;
-    DatePicker datePicker;
-    DatePicker endDatePicker;
-    ComboBox<User> userBox;
-    Grid<Trip> grid;
-    H2 exportHeader;
-    Grid<Trip> exportGrid;
-    TextArea output;
-    List<Trip> tripsToExport;
-    Button settleNewButton;
-    Set<Trip> tripsToGrid;
-    TextArea textArea;
+    final private TripDao tripDao;
+    final private TripService tripService;
+    final private AuditService auditService;
+    final private UserDao userDao;
+    final private EnterpriseService enterpriseService;
+    final private UserService userService;
+    private H2 header;
+    private TextField filter;
+    private DatePicker datePicker;
+    private DatePicker endDatePicker;
+    private ComboBox<User> userBox;
+    private Grid<Trip> grid;
+    private H2 exportHeader;
+    private Grid<Trip> exportGrid;
+    private TextArea output;
+    private List<Trip> tripsToExport;
+    private Button settleNewButton;
+    private Set<Trip> tripsToGrid;
+    private TextArea textArea;
 
     Button exportButton;
     TripSummaryGenerator generator;
