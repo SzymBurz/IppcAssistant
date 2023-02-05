@@ -127,14 +127,8 @@ public class AddNewAudit extends VerticalLayout {
         endDatePicker.addValueChangeListener(e -> updateList());
     }
 
-    private void updateList() {
-        if (datePicker.isEmpty()) {
-            grid.setItems(enterpriseService.findAll(filter.getValue()));
-        } else if (!datePicker.isEmpty() || !endDatePicker.isEmpty()) {
-            grid.setItems(enterpriseService.findByNameAndPeriod(filter.getValue(), datePicker.getValue(), endDatePicker.getValue()));
-        } else {
-
-        }
+    private void updateList(){
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), null));
     }
     private void configureGrid() {
         grid.setHeight("200px");
