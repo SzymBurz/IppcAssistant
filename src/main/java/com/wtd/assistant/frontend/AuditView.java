@@ -155,7 +155,6 @@ public class AuditView extends VerticalLayout {
     }
 
     private void updateList() {
-
         grid.setItems(auditService.findAuditsByCriteria(filter.getValue(), datePicker.getValue(), userBox.getValue(), notCompleted.getValue(), completed.getValue()));
 
     }

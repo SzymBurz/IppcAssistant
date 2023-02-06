@@ -61,16 +61,10 @@ public class NewEnterpriseView extends VerticalLayout{
                         System.out.println("Object not created");
                     }
 
-
                 });
 
         saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-
-
         enterpriseInformationLayout.add(saveButton);
-        /*
-        setContent(enterpriseInformationLayout);
-         */
         add(enterpriseInformationLayout);
 
     }

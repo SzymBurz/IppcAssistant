@@ -1,40 +1,60 @@
 package com.wtd.assistant.frontend.service;
 
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
+import com.wtd.assistant.frontend.domain.Audit;
 import com.wtd.assistant.frontend.domain.Enterprise;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 @Service
 public class EnterpriseService {
 
-    private Set enterprises;
-    private static EnterpriseService enterpriseService;
+
+    //private static EnterpriseService enterpriseService;
+    @Autowired
     private EnterpriseDao enterpriseDao;
 
-    public EnterpriseService(EnterpriseDao enterpriseDao) {
-        this.enterpriseDao = enterpriseDao;
-    }
+    @Autowired
+    EntityManager em;
 
-    public List<Enterprise> findAll() {
-        return (List<Enterprise>) enterpriseDao.findAll();
-    }
+    public List<Enterprise> findEnterprisesByCriteria(String filter, LocalDate datePickerStart, LocalDate datePickerEnd, Integer tripId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Enterprise> cq = cb.createQuery(Enterprise.class);
 
-    //Overloading
-    public List<Enterprise> findAll(String filter) {
-        if (filter == null || filter.isEmpty()) {
-            return (List<Enterprise>) enterpriseDao.findAll();
-        } else {
-            return enterpriseDao.findByName(filter);
+        Root<Enterprise> enterprise = cq.from(Enterprise.class);
+        Join<Enterprise, Audit> audits = enterprise.join("audits");
+        List<Predicate> predicateList = new ArrayList<>();
+
+        if(filter != null) {
+            Predicate namePredicate = cb.like(cb.upper(enterprise.get("name")), "%"+filter.toUpperCase()+"%");
+            Predicate ippcPredicate = cb.like(cb.upper(enterprise.get("ippcCode")), "%"+filter.toUpperCase()+"%");
+            Predicate ippcNamePredicate = cb.or(namePredicate, ippcPredicate);
+            predicateList.add(ippcNamePredicate);
         }
-    }
+        if(datePickerStart != null && datePickerEnd != null) {
+            Predicate datePredicate = cb.between(enterprise.get("expiryDate"), datePickerStart, datePickerEnd);
+            predicateList.add(datePredicate);
+        }
+        if(tripId != null) {
+            Predicate tripPredicate = cb.equal(audits.get("tripId"), tripId);
+            predicateList.add(tripPredicate);
+        }
 
-    public List<Enterprise> findByNameAndPeriod(String filter, LocalDate expiryDateStart, LocalDate expiryDateEnd) {
-            return enterpriseDao.findByNameAndPeriod(filter, expiryDateStart, expiryDateEnd);
+        Predicate finalQuery = cb.and(predicateList.toArray(new Predicate[predicateList.size()]));
+        cq.where(finalQuery);
+        TypedQuery<Enterprise> query = em.createQuery(cq);
+
+        List<Enterprise> resList = query.getResultList();
+        System.out.println("ResultList: " + resList);
+
+        return resList;
+
     }
 
     public String enterprisesByAuditTripIdToString(int tripId) {
@@ -55,20 +75,6 @@ public class EnterpriseService {
             stringBuilder.append("\n" + e.getName() + " " + e.getIppcCode());
         }
         return stringBuilder.toString();
-    }
-
-    public void updateExpiryDate(int enterpriseId, LocalDate newExpiryDate) {
-        //Date expiryDate = Date.valueOf(newExpiryDate);
-        //enterpriseDao.updateExpiryDate(enterpriseId, expiryDate);
-        enterpriseDao.updateExpiryDate(enterpriseId, newExpiryDate);
-    }
-
-    public void updateName(int enterpriseId, String name) {
-        enterpriseDao.updateName(enterpriseId, name);
-    }
-
-    public void updateCode(int enterpriseId, String code) {
-        enterpriseDao.updateName(enterpriseId, code);
     }
 
 }

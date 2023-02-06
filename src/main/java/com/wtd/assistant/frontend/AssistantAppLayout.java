@@ -1,6 +1,4 @@
 package com.wtd.assistant.frontend;
-
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H1;
@@ -11,10 +9,7 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import com.wtd.assistant.frontend.domain.Enterprise;
 
-
-//Nie wiem co z tym zrobić
 @Route("app-layout")
 public class AssistantAppLayout extends AppLayout {
 

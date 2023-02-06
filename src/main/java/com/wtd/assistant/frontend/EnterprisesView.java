@@ -39,13 +39,6 @@ public class EnterprisesView extends VerticalLayout {
     private TextArea output;
     private EnterpriseSummaryGenerator generator;
 
-    //dodać filtrowanie wyników
-    //dodać sortowanie: po województwie/misiącu
-    //dodać eksport do csv
-    //add new prowadzi do widoku wprowadzania -> pierwszy dokment
-    //dodanie statusów do przedsiębiorstw: ważny certyfikat/nieważny certyfikat
-    //klasa wysyłająca powiadomienia 
-
     public EnterprisesView(EnterpriseDao enterpriseDao, EnterpriseService enterpriseService, EnterpriseSummaryGenerator generator) {
         this.enterpriseService = enterpriseService;
         this.enterpriseDao = enterpriseDao;
@@ -79,12 +72,6 @@ public class EnterprisesView extends VerticalLayout {
         VerticalLayout layout3 = new VerticalLayout(exportButton);
         layout2.setAlignItems(FlexComponent.Alignment.END);
         layout3.setAlignItems(FlexComponent.Alignment.END);
-
-        /*
-        VerticalLayout generalLayout = new VerticalLayout();
-        generalLayout.add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, csvOutput);
-        setContent(generalLayout);
-         */
         add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, output);
 
     }
@@ -149,15 +136,8 @@ public class EnterprisesView extends VerticalLayout {
 
     private void updateList() {
 
-        if (filter.isEmpty() && datePicker.isEmpty() && endDatePicker.isEmpty()) {
-            grid.setItems((List<Enterprise>) enterpriseDao.findAll());
-        } else if (!filter.isEmpty() && datePicker.isEmpty() && endDatePicker.isEmpty()) {
-            grid.setItems(enterpriseDao.findByNameOrIppcCode(filter.getValue()));
-        } else if (!filter.isEmpty() && !datePicker.isEmpty() && !endDatePicker.isEmpty()) {
-            grid.setItems(enterpriseDao.findByExpiryDateBetweenAndNameLikeIgnoreCaseOrIppcCodeLikeIgnoreCase(datePicker.getValue(), endDatePicker.getValue(), filter.getValue(), filter.getValue()));
-        } else if (filter.isEmpty() && !datePicker.isEmpty() && !endDatePicker.isEmpty()) {
-            grid.setItems(enterpriseDao.findByExpiryDate(datePicker.getValue(), endDatePicker.getValue()));
-        }
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), null));
+
     }
 
     private void configureDatePicker() {

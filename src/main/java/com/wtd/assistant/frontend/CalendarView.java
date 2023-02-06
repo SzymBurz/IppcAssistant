@@ -1,7 +1,5 @@
 package com.wtd.assistant.frontend;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

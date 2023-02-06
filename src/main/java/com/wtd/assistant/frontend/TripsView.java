@@ -130,16 +130,16 @@ public class TripsView extends VerticalLayout {
     private void configureExportGrid() {
         exportGrid.setHeight("200px");
         exportGrid.setColumns("tripId");
-        exportGrid.addColumn(Trip -> Trip.daysToString()).setHeader("days");
+        exportGrid.addColumn(Trip::daysToString).setHeader("days");
         exportGrid.setItems(tripsToExport);
     }
 
     private void configureGrid() {
         grid.setHeight("200px");
         grid.setColumns("tripId");
-        grid.addColumn(Trip -> Trip.daysToString()).setHeader("days");
+        grid.addColumn(Trip::daysToString).setHeader("days");
         grid.addColumn(Trip -> enterpriseService.enterprisesByAuditTripIdToString(Trip.getTripId())).setHeader("Audits");
-        grid.addColumn(Trip -> userService.userByTrip(Trip.getTripId())).setHeader("User");
+        grid.addColumn(Trip -> userService.userByTripToString(Trip.getTripId())).setHeader("User");
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
         grid.setItems((List<Trip>) tripDao.findAll());
 
@@ -153,7 +153,7 @@ public class TripsView extends VerticalLayout {
 
     private void refreshGrid() {
         tripsToGrid.clear();
-        tripsToGrid.addAll(tripService.findAuditsByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), userBox.getValue()));
+        tripsToGrid.addAll(tripService.findTripsByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), userBox.getValue()));
         grid.setItems(tripsToGrid);
     }
 }

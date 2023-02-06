@@ -134,7 +134,7 @@ public class AddNewAudit extends VerticalLayout {
         grid.setHeight("200px");
         grid.setColumns("name", "ippcCode", "expiryDate");
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        grid.setItems((List<Enterprise>) enterpriseDao.findAll());
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(null, null, null, null));
     }
 
     private void configureUserComboBox() {

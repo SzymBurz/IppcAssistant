@@ -32,10 +32,10 @@ public class Trip {
     Car car;
 
     @Column
-    double carCounterBefore;
+    Double carCounterBefore;
 
     @Column
-    double carCounterAfter;
+    Double carCounterAfter;
 
 
     @OneToMany(
@@ -59,7 +59,7 @@ public class Trip {
     private List<Expense> expenses = new ArrayList<>();
 
     @Column
-    double workTime;
+    Double workTime;
 
     @Column
     LocalDate firstDay;
@@ -97,4 +97,11 @@ public class Trip {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "tripId=" + tripId +
+                ", firstDay=" + firstDay +
+                '}';
+    }
 }

@@ -66,15 +66,6 @@ public class AuditService {
 
     }
 
-
-    public List<Audit> findAll(String filter) {
-        if (filter == null || filter.isEmpty()) {
-            return (List<Audit>) auditDao.findAll();
-        } else {
-            return auditDao.findByEnterpriseNameLike(filter);
-        }
-    }
-
     public void updateAudit(int auditId, User user, LocalDate date, String remarks, LocalDate secondTerm){
         if (user != null) {
             auditDao.updateUserByAuditId(user, auditId);

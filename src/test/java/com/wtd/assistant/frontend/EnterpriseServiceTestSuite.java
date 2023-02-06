@@ -91,4 +91,11 @@ public class EnterpriseServiceTestSuite {
         System.out.println(enList);
         Assertions.assertEquals(1, enList.size());
     }
+
+    @Test
+    void getByNull() {
+        System.out.println("getByNull");
+        List<Enterprise> enList =  enterpriseService.findEnterprisesByCriteria(null, null, null, null);
+        System.out.println(enList);
+    }
 }
