@@ -19,14 +19,4 @@ it should send us this document in given time, or proof of fiing the issue. This
 * Build tool: gradle
 * Database: MySQL
 
-## About code
-
-It was my biggest solo project when i was deploying it to railway.com. Main purpose was to present my apabilities when it comes to programming. 
-I completed online programming course before, but I dont consider this complete education, rather some place to start. Real education started with self set goals, 
-finding way to get ideas to work, trying and testing, comunicate with others (stackoverflow) and feeling sense of achivement after seeing outcome. 
-  Code isn't flawless and has many artifacts which are testimony to my learning process. Complete lack of tests (for:13.12.2022), even through I know mockito and Junit. Queries, and filtering mechanisms for records could be probably written better, altrough ther's use of TypedQuery, predicates and criteria also. 
-Things getting messy with provided by railway.com MySQL database, mainly issues with LocalDae type, as I believe that server has different timezone set, and also
-handling boolean values. Both this things were workin pefectly locally.
-  There were few obstacles I needed to figure out, deployment on PaaS service with docker container mainly, but eventually everything came to beeing functional.
-
 
