@@ -1,7 +1,9 @@
 package com.wtd.assistant.frontend.data;
 
 import com.wtd.assistant.frontend.domain.Enterprise;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EnterpriseComparator {
 
     public boolean compareEnterprises(Enterprise e, Enterprise o) {

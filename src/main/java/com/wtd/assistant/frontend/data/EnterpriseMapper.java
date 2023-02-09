@@ -49,7 +49,7 @@ public class EnterpriseMapper {
     }
 
     public Optional<LocalDate> expiryDateFromXlsx(String input) {
-        Pattern pattern = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
+        Pattern pattern = Pattern.compile("\\b\\d{2}\\.\\d{2}\\.\\d{4}\\b");
         Matcher matcher = pattern.matcher(input);
         LocalDate outputDate = null;
         String output = null;
@@ -65,7 +65,7 @@ public class EnterpriseMapper {
                         Integer.parseInt(output.substring(6,10)),
                         Integer.parseInt(output.substring(3,5)),
                         Integer.parseInt(output.substring(0,2)));
-                System.out.println(outputDate);
+                //System.out.println(outputDate);
             } catch (Exception e) {
                 System.out.println(e);
                 System.out.println("Invalid input for new LocalDate");

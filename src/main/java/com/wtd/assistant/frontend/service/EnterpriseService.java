@@ -57,6 +57,35 @@ public class EnterpriseService {
 
     }
 
+    public List<Enterprise> findEnterprisesByCriteria(String filter, LocalDate datePickerStart, LocalDate datePickerEnd) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Enterprise> cq = cb.createQuery(Enterprise.class);
+
+        Root<Enterprise> enterprise = cq.from(Enterprise.class);
+        List<Predicate> predicateList = new ArrayList<>();
+
+        if(filter != null) {
+            Predicate namePredicate = cb.like(cb.upper(enterprise.get("name")), "%"+filter.toUpperCase()+"%");
+            Predicate ippcPredicate = cb.like(cb.upper(enterprise.get("ippcCode")), "%"+filter.toUpperCase()+"%");
+            Predicate ippcNamePredicate = cb.or(namePredicate, ippcPredicate);
+            predicateList.add(ippcNamePredicate);
+        }
+        if(datePickerStart != null && datePickerEnd != null) {
+            Predicate datePredicate = cb.between(enterprise.get("expiryDate"), datePickerStart, datePickerEnd);
+            predicateList.add(datePredicate);
+        }
+
+        Predicate finalQuery = cb.and(predicateList.toArray(new Predicate[predicateList.size()]));
+        cq.where(finalQuery);
+        TypedQuery<Enterprise> query = em.createQuery(cq);
+
+        List<Enterprise> resList = query.getResultList();
+        System.out.println("ResultList: " + resList);
+
+        return resList;
+
+    }
+
     public String enterprisesByAuditTripIdToString(int tripId) {
         List<Enterprise> enterpriseList = enterpriseDao.findByAudits_TripId_TripId(tripId);
         StringBuilder stringBuilder = new StringBuilder(100);

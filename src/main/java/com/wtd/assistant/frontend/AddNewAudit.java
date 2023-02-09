@@ -128,13 +128,13 @@ public class AddNewAudit extends VerticalLayout {
     }
 
     private void updateList(){
-        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), null));
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue()));
     }
     private void configureGrid() {
         grid.setHeight("200px");
         grid.setColumns("name", "ippcCode", "expiryDate");
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        grid.setItems(enterpriseService.findEnterprisesByCriteria(null, null, null, null));
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(null, null, null));
     }
 
     private void configureUserComboBox() {

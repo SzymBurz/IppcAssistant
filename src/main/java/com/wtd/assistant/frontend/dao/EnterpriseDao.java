@@ -31,6 +31,10 @@ public interface EnterpriseDao extends CrudRepository<Enterprise, Integer> {
     @Query("SELECT e FROM Enterprise e WHERE e.name LIKE CONCAT('%', :searchTerm, '%') OR e.ippcCode LIKE CONCAT('%', :searchTerm, '%')")
     List<Enterprise> findByNameOrIppcCode(@Param("searchTerm") String searchTerm);
 
+    @Query("SELECT e FROM Enterprise e WHERE e.ippcCode LIKE CONCAT('%', :searchTerm)")
+    Optional<Enterprise> findByIppcCodeDigitsOnly(@Param("searchTerm") String searchTerm);
+
+
     @Query("select e from Enterprise e " +
             "where (e.expiryDate between ?1 and ?2) and (e.name like concat('%', ?3, '%') or upper(e.ippcCode) like concat('%', ?4, '%'))")
     List<Enterprise> findByExpiryDateBetweenAndNameLikeIgnoreCaseOrIppcCodeLikeIgnoreCase(LocalDate expiryDateStart, LocalDate expiryDateEnd, String name, String ippcCode);

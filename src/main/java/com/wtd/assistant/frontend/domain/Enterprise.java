@@ -69,4 +69,8 @@ public class Enterprise {
     public String toString() {
         return  ippcCode + " " + name;
     }
+
+    public String toStringDetailed() {
+        return "Name: " + name + "\nIPPC Code: " + ippcCode + "\nExpiry Date: " + expiryDate;
+    }
 }

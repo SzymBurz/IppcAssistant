@@ -115,8 +115,11 @@ public class EnterprisesView extends VerticalLayout {
     private void configureGrid() {
         grid.setHeight("200px");
         grid.setColumns("name", "ippcCode", "expiryDate");
+        grid.getColumnByKey("expiryDate").setAutoWidth(true);
+        grid.getColumnByKey("ippcCode").setAutoWidth(true);
+        grid.getColumnByKey("name").setAutoWidth(true);
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        grid.setItems((List<Enterprise>) enterpriseDao.findAll());
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(null, null, null));
     }
 
     private void configureAddNewButton() {
@@ -135,8 +138,7 @@ public class EnterprisesView extends VerticalLayout {
     }
 
     private void updateList() {
-
-        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue(), null));
+        grid.setItems(enterpriseService.findEnterprisesByCriteria(filter.getValue(), datePicker.getValue(), endDatePicker.getValue()));
 
     }
 
