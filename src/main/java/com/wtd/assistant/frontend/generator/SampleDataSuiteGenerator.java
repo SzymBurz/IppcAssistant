@@ -174,6 +174,30 @@ public class SampleDataSuiteGenerator {
         auditDao.updateRemarksBy("Thermal sensors lacking required calibration certificate", a3.getAuditId());
     }
 
+    public void starterKit() {
+        Car c1 = new Car("Dacia Duster", "PO2433", 0);
+        Car c2 = new Car("Kia Ceed", "PO2534", 0);
+        Car c3 = new Car("Suzuki Vitara", "PO3639", 0);
+        Car c4 = new Car("Polonez Caro", "PZ1223", 0);
+
+        carDao.save(c1);
+        carDao.save(c2);
+        carDao.save(c3);
+        carDao.save(c4);
+
+        User u1 = new User("Dominik Młodzionek");
+        User u2 = new User("Łukasz Zły");
+        User u3 = new User("Wojciech Damianowski");
+        User u4 = new User("Anna Fett");
+        User u5 = new User("Szymon Murzyński");
+
+        userDao.save(u1);
+        userDao.save(u2);
+        userDao.save(u3);
+        userDao.save(u4);
+        userDao.save(u5);
+    }
+
     void cleanEnterprisesTable() {
         enterpriseDao.deleteAll();
     }

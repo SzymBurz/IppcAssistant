@@ -1,6 +1,7 @@
 package com.wtd.assistant.frontend;
 
 import com.wtd.assistant.frontend.data.DataProvider;
+import com.wtd.assistant.frontend.generator.SampleDataSuiteGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,9 @@ public class AssistantApplication {
 
     @Autowired
     DataProvider dataProvider;
+
+    @Autowired
+    SampleDataSuiteGenerator sampleGenerator;
     @Value("${assistant.app.mode}")
     String mode;
 
@@ -32,6 +36,11 @@ public class AssistantApplication {
             if(Objects.equals(mode, "dataupdate")) {
                 System.out.println("updating data ");
                 dataProvider.updateEnterprises();
+            }
+
+            if(Objects.equals(mode, "starterkit")) {
+                System.out.println("injecting starterkit data");
+                sampleGenerator.starterKit();
             }
         };
     }

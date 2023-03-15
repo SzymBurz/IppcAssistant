@@ -48,6 +48,7 @@ dependencies {
 	implementation 'org.apache.poi:poi-ooxml:5.2.0'
 	implementation 'org.apache.poi:poi:5.2.0'
 	implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+	implementation 'com.vaadin:vaadin-maven-plugin:23.3.6'
 
 }
 
@@ -66,7 +67,7 @@ test {
 // for more configuration options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
 	pnpmEnable = true
-	productionMode = true
+//	productionMode = true
 }
 
 bootRun {
