@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend;
+package com.wtd.assistant.frontend.views;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -12,7 +12,6 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.LumoUtility;
 import com.wtd.assistant.frontend.dao.TripDao;
 import com.wtd.assistant.frontend.dao.UserDao;
 import com.wtd.assistant.frontend.domain.Trip;
@@ -22,9 +21,7 @@ import com.wtd.assistant.frontend.service.AuditService;
 import com.wtd.assistant.frontend.service.EnterpriseService;
 import com.wtd.assistant.frontend.service.TripService;
 import com.wtd.assistant.frontend.service.UserService;
-import net.bytebuddy.pool.TypePool;
 
-import java.time.LocalDate;
 import java.util.*;
 
 @Route(value = "Trips", layout = AssistantAppLayout.class)

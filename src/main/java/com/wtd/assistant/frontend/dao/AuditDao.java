@@ -8,7 +8,6 @@ import com.wtd.assistant.frontend.domain.User;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,17 +22,9 @@ public interface AuditDao extends CrudRepository<Audit, Integer> {
     List<Audit> findByEnterprise(Optional<Enterprise> enterprise);
     List<Audit> findAll();
 
-    @Query("SELECT a FROM Audit a JOIN a.enterprise e WHERE e.name LIKE CONCAT('%', :searchTerm, '%')")
-    List<Audit> findByEnterpriseNameLike(@Param("searchTerm") String searchTerm);
-
-    List<Audit> findByTripId_TripId(int tripId);
-
     List<Audit> findByCompleted(Boolean completed);
 
-    List<Audit> findByDateGreaterThanEqual(LocalDate date);
-
     List<Audit> findByDateGreaterThanEqualAndCompletedFalse(LocalDate date);
-
 
 
     List<Audit> findBySecondTermNotNullAndSecondTermGreaterThanEqual(LocalDate secondTerm);

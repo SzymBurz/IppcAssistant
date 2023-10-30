@@ -21,10 +21,10 @@ import com.vaadin.flow.component.button.Button;
 import com.wtd.assistant.frontend.service.AuditService;
 import com.vaadin.flow.component.textfield.TextField;
 import com.wtd.assistant.frontend.service.EnterpriseService;
+import com.wtd.assistant.frontend.views.AssistantAppLayout;
 
 
 import java.util.Collection;
-import java.util.List;
 
 @Route(value = "NewAudit", layout = AssistantAppLayout.class)
 public class AddNewAudit extends VerticalLayout {

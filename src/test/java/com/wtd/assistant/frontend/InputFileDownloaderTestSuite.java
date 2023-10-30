@@ -1,6 +1,6 @@
 package com.wtd.assistant.frontend;
 
-import com.wtd.assistant.frontend.data.InputFileDownloader;
+import com.wtd.assistant.frontend.dataimport.InputFileDownloader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

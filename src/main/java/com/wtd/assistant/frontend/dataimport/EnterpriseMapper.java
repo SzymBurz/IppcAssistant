@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend.data;
+package com.wtd.assistant.frontend.dataimport;
 
 import com.wtd.assistant.frontend.domain.Enterprise;
 import org.springframework.stereotype.Component;

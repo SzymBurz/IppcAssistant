@@ -1,6 +1,6 @@
 package com.wtd.assistant.frontend;
 
-import com.wtd.assistant.frontend.data.DataProvider;
+import com.wtd.assistant.frontend.dataimport.DataProvider;
 import com.wtd.assistant.frontend.generator.SampleDataSuiteGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

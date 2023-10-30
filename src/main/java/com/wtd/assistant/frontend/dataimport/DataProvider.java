@@ -1,8 +1,7 @@
-package com.wtd.assistant.frontend.data;
+package com.wtd.assistant.frontend.dataimport;
 
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

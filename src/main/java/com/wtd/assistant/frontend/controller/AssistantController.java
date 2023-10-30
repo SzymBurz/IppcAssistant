@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend.Controller;
+package com.wtd.assistant.frontend.controller;
 
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;

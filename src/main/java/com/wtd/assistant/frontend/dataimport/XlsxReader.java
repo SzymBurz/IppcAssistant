@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend.data;
+package com.wtd.assistant.frontend.dataimport;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

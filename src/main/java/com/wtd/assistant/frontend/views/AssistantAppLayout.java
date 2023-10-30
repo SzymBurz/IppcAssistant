@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend;
+package com.wtd.assistant.frontend.views;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H1;
@@ -33,7 +33,8 @@ public class AssistantAppLayout extends AppLayout {
                 createTab(VaadinIcon.FACTORY, "IPPC Codes", EnterprisesView.class),
                 createTab(VaadinIcon.EYE, "Audits", AuditView.class),
                 createTab(VaadinIcon.CAR, "Trips", TripsView.class),
-                createTab(VaadinIcon.CALENDAR, "Calendar", CalendarView.class));
+                createTab(VaadinIcon.CALENDAR, "Calendar", CalendarView.class),
+                createTab(VaadinIcon.COG_O, "Settings", SettingsView.class));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;
     }

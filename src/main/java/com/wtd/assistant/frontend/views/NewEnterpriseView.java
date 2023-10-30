@@ -1,6 +1,5 @@
-package com.wtd.assistant.frontend;
+package com.wtd.assistant.frontend.views;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;

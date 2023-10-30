@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend;
+package com.wtd.assistant.frontend.views;
 
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.html.Image;

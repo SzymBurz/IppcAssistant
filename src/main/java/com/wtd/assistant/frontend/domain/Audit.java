@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Getter
 @Setter
@@ -36,13 +35,13 @@ public class Audit {
     public LocalDate date;
 
     @Column
-    Boolean completed;
+    public Boolean completed;
 
     @Column
-    String remarks;
+    public String remarks;
 
     @Column
-    LocalDate secondTerm;
+    public LocalDate secondTerm;
 
     public Audit(Enterprise enterprise, User user, LocalDate date) {
         this.enterprise = enterprise;
