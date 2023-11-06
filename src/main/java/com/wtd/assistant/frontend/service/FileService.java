@@ -13,7 +13,7 @@ public class FileService {
     public FileService(FileDao fileDao) {
         this.fileDao = fileDao;
     }
-
+    /*
     public void saveFile(FileEntity fileEntity) {
         fileDao.saveFile(fileEntity);
     }
@@ -21,4 +21,6 @@ public class FileService {
     public FileEntity getFileById(int id) {
         return fileDao.getFileById(id);
     }
+
+     */
 }

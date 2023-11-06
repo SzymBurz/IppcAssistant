@@ -14,7 +14,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
-import com.wtd.assistant.frontend.AddNewAudit;
 import com.wtd.assistant.frontend.dao.AuditDao;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.dao.UserDao;
@@ -95,7 +94,7 @@ public class AuditView extends VerticalLayout {
 
     private void configureAddNewBtn() {
         addNewBtn.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.navigate(AddNewAudit.class));
+            getUI().ifPresent(ui -> ui.navigate(AddNewAuditView.class));
         });
     }
 

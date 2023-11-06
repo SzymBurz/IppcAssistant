@@ -49,11 +49,7 @@ public class InputFileConverter {
             throw new RuntimeException(e);
         }
 
-        if (xlsxFile.length() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return xlsxFile.length() > 0;
 
     }
 }

@@ -1,4 +1,4 @@
-package com.wtd.assistant.frontend;
+package com.wtd.assistant.frontend.views;
 
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -21,13 +21,12 @@ import com.vaadin.flow.component.button.Button;
 import com.wtd.assistant.frontend.service.AuditService;
 import com.vaadin.flow.component.textfield.TextField;
 import com.wtd.assistant.frontend.service.EnterpriseService;
-import com.wtd.assistant.frontend.views.AssistantAppLayout;
 
 
 import java.util.Collection;
 
 @Route(value = "NewAudit", layout = AssistantAppLayout.class)
-public class AddNewAudit extends VerticalLayout {
+public class AddNewAuditView extends VerticalLayout {
 
     //Repositories, Services
     private AuditDao auditDao;
@@ -57,7 +56,7 @@ public class AddNewAudit extends VerticalLayout {
     private Enterprise  enterprise;
     private Dialog dialog;
 
-    public AddNewAudit(UserDao userDao, AuditDao auditDao, AuditService auditService, EnterpriseDao enterpriseDao, EnterpriseService enterpriseService) {
+    public AddNewAuditView(UserDao userDao, AuditDao auditDao, AuditService auditService, EnterpriseDao enterpriseDao, EnterpriseService enterpriseService) {
 
         this.userDao = userDao;
         this.auditDao = auditDao;

@@ -19,6 +19,7 @@ public class FileController {
 
     //@PostMapping("/upload")
     //public String uploadFile(@RequestParam("file") MultipartFile file) {
+    /*
     public String uploadFile(MultipartFile file) {
         try {
             FileEntity fileEntity = new FileEntity();
@@ -33,4 +34,5 @@ public class FileController {
             return "Error uploading file: " + e.getMessage();
         }
     }
+     */
 }

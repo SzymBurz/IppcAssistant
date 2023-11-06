@@ -14,7 +14,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.*;
-import com.wtd.assistant.frontend.AddNewAudit;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;
 import com.wtd.assistant.frontend.generator.EnterpriseSummaryGenerator;
@@ -109,7 +108,7 @@ public class EnterprisesView extends VerticalLayout {
             exportGrid.getDataProvider().refreshAll();
         });
         menu.addItem("Create Audit", event -> {
-            menu.getUI().ifPresent(ui -> ui.navigate(AddNewAudit.class));
+            menu.getUI().ifPresent(ui -> ui.navigate(AddNewAuditView.class));
         });
     }
 
