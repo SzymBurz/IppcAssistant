@@ -8,6 +8,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 
+import javax.annotation.security.PermitAll;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.List;
 
 @Route(value = "", layout = AssistantAppLayout.class)
+@PermitAll
 public class HomePage extends VerticalLayout{
 
     StreamResource imageResource1 = new StreamResource("7.jpg", () -> getClass().getResourceAsStream("/images/7.jpg"));
