@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FileDao extends CrudRepository<FileEntity, Integer> {
 
+
+    FileEntity findByFileName(String fileName);
+
     /*
     private final EntityManager entityManager;
 

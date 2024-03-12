@@ -9,10 +9,11 @@ import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.dao.UserDao;
 import com.wtd.assistant.frontend.domain.Audit;
 
+import javax.annotation.security.PermitAll;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-
+@PermitAll
 @Route(value = "Calendar", layout = AssistantAppLayout.class)
 public class CalendarView extends VerticalLayout {
     final private AuditDao auditDao;

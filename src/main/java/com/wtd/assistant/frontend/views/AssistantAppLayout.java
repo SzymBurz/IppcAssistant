@@ -1,6 +1,7 @@
 package com.wtd.assistant.frontend.views;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -9,11 +10,27 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.spring.security.AuthenticationContext;
+import com.wtd.assistant.frontend.service.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+
+
+//https://vaadin.com/docs/latest/security/enabling-security
 
 @Route("app-layout")
 public class AssistantAppLayout extends AppLayout {
 
-    public AssistantAppLayout() {
+    private SecurityService securityService;
+
+    //private final transient AuthenticationContext authContext;
+
+    @Autowired
+    public AssistantAppLayout(/*AuthenticationContext authContext*/SecurityService securityService) {
+        this.securityService = securityService;
+        //this.authContext = authContext;
+
+
         DrawerToggle toggle = new DrawerToggle();
 
         H1 title = new H1("IPPC-Assistant");
@@ -24,6 +41,23 @@ public class AssistantAppLayout extends AppLayout {
 
         addToDrawer(tabs);
         addToNavbar(toggle, title);
+
+        if (securityService.getAuthenticatedUser() != null) {
+
+            Button logout = new Button("Logout", click ->
+                    securityService.logout());
+            addToNavbar(logout);
+        }
+
+        /*or with AutenticationContext
+
+        authContext.getAuthenticatedUser(UserDetails.class).map(user -> {
+            Button logout = new Button("Logout", click -> securityService.logout());
+            addToNavbar(logout);
+            return true;
+        });
+*/
+
 
     }
 

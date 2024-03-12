@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EnterpriseDao extends CrudRepository<Enterprise, Integer> {
+    List<Enterprise> findByExpiryDateBetweenOrderByExpiryDateAsc(LocalDate expiryDateStart, LocalDate expiryDateEnd);
 
     //W HQL zawsze nazwa klasy nie tabeli: Enterprise a nie ENTERPRISES
 
