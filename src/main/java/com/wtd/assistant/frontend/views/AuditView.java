@@ -21,8 +21,10 @@ import com.wtd.assistant.frontend.domain.Audit;
 import com.wtd.assistant.frontend.domain.User;
 import com.wtd.assistant.frontend.service.AuditService;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import javax.annotation.security.PermitAll;
 import java.util.Collection;
 
+@PermitAll
 @Route(value = "Audits", layout = AssistantAppLayout.class)
 public class AuditView extends VerticalLayout {
 

@@ -16,10 +16,11 @@ import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Audit;
 import com.wtd.assistant.frontend.domain.Enterprise;
 import com.wtd.assistant.frontend.service.EnterpriseService;
-
+import javax.annotation.security.PermitAll;
 import java.util.List;
 import java.util.Optional;
 
+@PermitAll
 @Route(value = "EnterpriseView", layout = AssistantAppLayout.class)
 public class EnterpriseView extends VerticalLayout implements HasUrlParameter<String>, AfterNavigationObserver {
 
