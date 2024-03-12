@@ -21,7 +21,9 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.ArrayList;
 import java.util.List;
 import com.wtd.assistant.frontend.print.PrintDialog;
+import javax.annotation.security.PermitAll;
 
+@PermitAll
 @Route(value = "Enterprises", layout = AssistantAppLayout.class)
 public class EnterprisesView extends VerticalLayout {
 

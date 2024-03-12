@@ -10,9 +10,10 @@ import com.vaadin.flow.router.Route;
 import com.wtd.assistant.frontend.dao.FileDao;
 import com.wtd.assistant.frontend.domain.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.annotation.security.PermitAll;
 import java.io.*;
 
+@PermitAll
 @Route(value = "Settings", layout = AssistantAppLayout.class)
 public class SettingsView extends VerticalLayout {
 
@@ -30,7 +31,6 @@ public class SettingsView extends VerticalLayout {
         this.uploadDataBtn = new Button("Upload data", VaadinIcon.UPLOAD.create());
         this.dialog = new Dialog();
 
-
         add(uploadDataBtn);
 
         initialize();
@@ -42,9 +42,6 @@ public class SettingsView extends VerticalLayout {
         dialog.add(upload);
 
         uploadDataBtn.addClickListener(e -> dialog.setOpened(true));
-
-
-
 
         upload.addSucceededListener(event -> {
             String fileName = event.getFileName();
