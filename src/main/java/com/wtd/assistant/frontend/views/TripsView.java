@@ -22,8 +22,10 @@ import com.wtd.assistant.frontend.service.EnterpriseService;
 import com.wtd.assistant.frontend.service.TripService;
 import com.wtd.assistant.frontend.service.UserService;
 
+import javax.annotation.security.PermitAll;
 import java.util.*;
 
+@PermitAll
 @Route(value = "Trips", layout = AssistantAppLayout.class)
 public class TripsView extends VerticalLayout {
 
