@@ -15,9 +15,11 @@ import com.wtd.assistant.frontend.service.PrintingService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.annotation.security.PermitAll;
 import java.time.LocalDate;
 import java.util.List;
 
+@PermitAll
 @Service
 public class PrintDialog extends Dialog {
 
