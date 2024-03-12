@@ -10,9 +10,6 @@ import com.vaadin.flow.router.Route;
 import com.wtd.assistant.frontend.dao.EnterpriseDao;
 import com.wtd.assistant.frontend.domain.Enterprise;
 
-import javax.annotation.security.PermitAll;
-
-@PermitAll
 @Route(value = "NewEnterprise", layout = AssistantAppLayout.class)
 public class NewEnterpriseView extends VerticalLayout{
 

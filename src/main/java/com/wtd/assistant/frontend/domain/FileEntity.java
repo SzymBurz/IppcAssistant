@@ -1,13 +1,11 @@
 package com.wtd.assistant.frontend.domain;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Setter
-@Getter
 @NoArgsConstructor
 @Entity
 @Table(name = "FILES")

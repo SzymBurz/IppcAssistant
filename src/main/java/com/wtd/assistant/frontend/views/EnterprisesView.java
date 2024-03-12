@@ -20,13 +20,7 @@ import com.wtd.assistant.frontend.generator.EnterpriseSummaryGenerator;
 import com.wtd.assistant.frontend.service.EnterpriseService;
 import java.util.ArrayList;
 import java.util.List;
-import com.wtd.assistant.frontend.print.PrintDialog;
-import com.wtd.assistant.frontend.service.PrintingService;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.security.PermitAll;
-
-@PermitAll
 @Route(value = "Enterprises", layout = AssistantAppLayout.class)
 public class EnterprisesView extends VerticalLayout {
 
@@ -42,12 +36,10 @@ public class EnterprisesView extends VerticalLayout {
     private H2 gridHeader;
     private H2 exportGridHeader;
     private Button exportButton;
-    private Button printButton;
     private TextArea output;
     private EnterpriseSummaryGenerator generator;
-    private PrintDialog printDialog;
 
-    public EnterprisesView(EnterpriseDao enterpriseDao, EnterpriseService enterpriseService, EnterpriseSummaryGenerator generator, PrintDialog printDialog) {
+    public EnterprisesView(EnterpriseDao enterpriseDao, EnterpriseService enterpriseService, EnterpriseSummaryGenerator generator) {
         this.enterpriseService = enterpriseService;
         this.enterpriseDao = enterpriseDao;
         this.grid = new Grid<>(Enterprise.class);
@@ -60,15 +52,12 @@ public class EnterprisesView extends VerticalLayout {
         this.gridHeader = new H2("Enterprises");
         this.exportGridHeader = new H2("Export");
         this.exportButton = new Button("Export Data");
-        this.printButton = new Button("Print", VaadinIcon.PRINT.create());
         this.output = new TextArea();
         this.generator = generator;
-        this.printDialog = printDialog;
 
         configureFilter();
         configureAddNewButton();
         configureExportButton();
-        configurePrintButton();
         configureGrid();
         configureDatePicker();
         configureEndDatePicker();
@@ -80,7 +69,7 @@ public class EnterprisesView extends VerticalLayout {
 
         HorizontalLayout layout = new HorizontalLayout(filter, datePicker, endDatePicker, addNewBtn);
         VerticalLayout layout2 = new VerticalLayout(addNewBtn);
-        HorizontalLayout layout3 = new HorizontalLayout(exportButton, printButton);
+        VerticalLayout layout3 = new VerticalLayout(exportButton);
         layout2.setAlignItems(FlexComponent.Alignment.END);
         layout3.setAlignItems(FlexComponent.Alignment.END);
         add(gridHeader, layout, grid, layout2, exportGridHeader, exportGrid, layout3, output);
@@ -139,13 +128,6 @@ public class EnterprisesView extends VerticalLayout {
 
     private void configureExportButton() {
         exportButton.addClickListener(e -> generator.generateSummary(exportSelection, output));
-    }
-
-    private void configurePrintButton() {
-        printButton.addClickListener(e -> {
-            printDialog.setEnterprisesToPrint(exportSelection);
-            printDialog.open();
-        });
     }
 
     private void configureFilter() {
