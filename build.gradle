@@ -22,6 +22,7 @@ repositories {
 	mavenCentral()
 	maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
 	maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
+	maven { setUrl('https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/') }
 }
 
 configurations {
@@ -51,6 +52,7 @@ dependencies {
 	implementation 'org.apache.poi:poi:5.2.0'
 	implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
 	implementation 'com.vaadin:vaadin-maven-plugin:23.3.6'
+	implementation 'net.sf.jasperreports:jasperreports:6.20.0'
 
 }
 
