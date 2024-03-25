@@ -1,19 +1,24 @@
 package com.wtd.assistant.frontend.views;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.*;
+import com.wtd.assistant.frontend.service.CustomAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Route("login")
 @PageTitle("Login | Vaadin CRM")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private final LoginForm login = new LoginForm();
+    @Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;
 
     public LoginView(){
         addClassName("login-view");
@@ -24,30 +29,25 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         login.setAction("login");
 
         VerticalLayout header = new VerticalLayout();
-        header.add(new H1("Auditor assistant"), new Span("Username: user"), new Span("Password: userpass"));
+        header.add(new H1("Auditor assistant"));
         header.setAlignItems(Alignment.CENTER);
-
-        add(header, login);
+        RouterLink registerLink = new RouterLink("Register", RegisterView.class);
+        add(header, login, registerLink);
 
         login.addLoginListener(e -> {
-            // Check login credentials (you might have your own logic here)
             boolean isAuthenticated = authenticateUser(e.getUsername(), e.getPassword());
 
             if (isAuthenticated) {
-                // If authentication is successful, navigate to another view
-                getUI().ifPresent(ui -> ui.navigate("")); // "dashboard" is the target view
+                getUI().ifPresent(ui -> ui.navigate(""));
             } else {
-                // If authentication fails, show an error message or handle accordingly
                 login.setError(true);
             }
         });
-
 
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        // inform the user about an authentication error
         if(beforeEnterEvent.getLocation()
                 .getQueryParameters()
                 .getParameters()
@@ -56,11 +56,13 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         }
     }
 
-
     private boolean authenticateUser(String username, String password) {
-        // Implement your own authentication logic (check credentials, etc.)
-        // Return true if authentication is successful, false otherwise
-        return "user".equals(username) && "userpass".equals(password);
+
+        Authentication result = customAuthenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        SecurityContextHolder.getContext().setAuthentication(result);
+
+        return result.isAuthenticated();
+
     }
 
 }

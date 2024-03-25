@@ -2,6 +2,7 @@ package com.wtd.assistant.frontend.config;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import com.wtd.assistant.frontend.views.LoginView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +18,7 @@ import java.util.Collections;
 @Configuration
 public class SecurityConfiguration extends VaadinWebSecurity {
 
+    /*
     private static class CrmInMemoryUserDetailsManager extends InMemoryUserDetailsManager {
         public CrmInMemoryUserDetailsManager() {
             createUser(new User("user",
@@ -25,19 +27,33 @@ public class SecurityConfiguration extends VaadinWebSecurity {
         }
     }
 
+     */
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Authorize access to /images/ without authentication
-        http.authorizeRequests().antMatchers("/images/**").permitAll();
+        http.authorizeRequests().antMatchers("/register").permitAll();
         // Set default security policy that permits Vaadin internal requests and
         // denies all other
         super.configure(http);
-        setLoginView(http, LoginView.class, "/logout");
-    }
 
+        setLoginView(http, LoginView.class, "/logout");
+
+        /*alternative
+         http.authorizeRequests()
+            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/user/**").hasRole("USER")
+            .anyRequest().authenticated()
+            .and()
+            .formLogin().permitAll()
+            .and()
+            .logout().permitAll();
+         */
+    }
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         return new CrmInMemoryUserDetailsManager();
     }
-
+    */
 }

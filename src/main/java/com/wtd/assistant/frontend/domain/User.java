@@ -22,10 +22,13 @@ public class User {
     @GeneratedValue
     @NotNull
     @Column(unique = true)
-    int userId;
+    private int userId;
 
     @Column
-    String name;
+    private String name;
+
+    @Column
+    private String password;
 
     @OneToMany(
             targetEntity = Audit.class,
