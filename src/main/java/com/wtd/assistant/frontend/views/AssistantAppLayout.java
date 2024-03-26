@@ -6,6 +6,8 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
@@ -37,7 +39,9 @@ public class AssistantAppLayout extends AppLayout {
 
             Button logout = new Button("Logout", click ->
                     securityService.logout());
-            addToNavbar(logout);
+            VerticalLayout vertLay = new VerticalLayout(logout);
+            vertLay.setAlignItems(FlexComponent.Alignment.END);
+            addToNavbar(vertLay);
         }
 
     }

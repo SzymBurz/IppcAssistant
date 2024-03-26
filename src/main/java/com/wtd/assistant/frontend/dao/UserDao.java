@@ -17,4 +17,5 @@ public interface UserDao extends CrudRepository<User, Integer> {
 
     List<User> findByAudits_TripId(Trip tripId);
 
+    Optional<User> findByName(String username);
 }
